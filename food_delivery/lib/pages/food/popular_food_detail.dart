@@ -1,16 +1,33 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:food_delivery/app/app_constants.dart';
 import 'package:food_delivery/app/colors.dart';
 import 'package:food_delivery/app/dimensions.dart';
+import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:food_delivery/controllers/popular_product_controller.dart';
+import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/widgets/BigText.dart';
 import 'package:food_delivery/widgets/SmallText.dart';
 import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
+import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
+  final int pageId;
+  const PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    var product  = Get.find<PopularProductController>().popularProductList[pageId];
+    //print("page is id " + pageId.toString());
+    //print(" product name is " + product.name.toString());
+
+    
+    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -24,7 +41,11 @@ class PopularFoodDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage('assets/images/pho.jpeg'))),
+                        image: NetworkImage(
+                            AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!
+                            )
+                    )
+                ),
               )),
 
           //icon widgets
@@ -35,7 +56,11 @@ class PopularFoodDetail extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppIcon(icon: Icons.arrow_back_ios),
+                  GestureDetector(
+                    onTap:(){
+                      Get.to(()=>MainFoodPage());
+                    },
+                    child: AppIcon(icon: Icons.arrow_back_ios)),
                   AppIcon(icon: Icons.shopping_cart_outlined)
                 ],
               )),
@@ -58,7 +83,7 @@ class PopularFoodDetail extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AppColumn(text: "Vietnamese Side"),
+                      AppColumn(text: product.name!),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -70,7 +95,7 @@ class PopularFoodDetail extends StatelessWidget {
                         child: SingleChildScrollView(
                           child: ExpandableTextWidget(
                               text:
-                                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+                                  product.description!),
                         ),
                       ),
                     ],
@@ -78,7 +103,8 @@ class PopularFoodDetail extends StatelessWidget {
           //expandable text widget
         ],
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: GetBuilder<PopularProductController>(builder:(popularProduct){
+        return Container(
         height: Dimensions.bottomHeightBar,
         padding: EdgeInsets.only(
             top: Dimensions.height30,
@@ -104,20 +130,30 @@ class PopularFoodDetail extends StatelessWidget {
                   color: Colors.white),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.remove,
-                    color: AppColors.signColor,
+                  GestureDetector(
+                    onTap: (){
+                      popularProduct.setQuantity(false);
+                    },
+                    child: Icon(
+                      Icons.remove,
+                      color: AppColors.signColor,
+                    ),
                   ),
                   SizedBox(
                     width: Dimensions.width10 / 2,
                   ),
-                  BigText(text: "0"),
+                  BigText(text: popularProduct.quantity.toString()),
                   SizedBox(
                     width: Dimensions.width10 / 2,
                   ),
-                  Icon(
-                    Icons.add,
-                    color: AppColors.signColor,
+                  GestureDetector(
+                    onTap: (){
+                      popularProduct.setQuantity(true);
+                    },
+                    child: Icon(
+                      Icons.add,
+                      color: AppColors.signColor,
+                    ),
                   ),
                 ],
               ),
@@ -128,9 +164,14 @@ class PopularFoodDetail extends StatelessWidget {
                   bottom: Dimensions.height10,
                   left: Dimensions.width20,
                   right: Dimensions.width20),
-              child: BigText(
-                text: "\$10 | Add to cart",
-                color: Colors.white,
+              child: GestureDetector(
+                onTap: (){
+                  popularProduct.addItem(product);
+                },
+                child: BigText(
+                  text: "\$ ${product.price!} | Add to cart",
+                  color: Colors.white,
+                ),
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
@@ -139,6 +180,8 @@ class PopularFoodDetail extends StatelessWidget {
             )
           ],
         ),
+      );
+      },
       ),
     );
   }
