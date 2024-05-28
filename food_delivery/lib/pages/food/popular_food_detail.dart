@@ -15,6 +15,8 @@ import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
 import 'package:get/get.dart';
 
+import '../cart/cart_page.dart';
+
 class PopularFoodDetail extends StatelessWidget {
   final int pageId;
   const PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
@@ -26,7 +28,7 @@ class PopularFoodDetail extends StatelessWidget {
     //print(" product name is " + product.name.toString());
 
     
-    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
+    Get.find<PopularProductController>().initProduct(product,Get.find<CartController>());
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -61,7 +63,36 @@ class PopularFoodDetail extends StatelessWidget {
                       Get.to(()=>MainFoodPage());
                     },
                     child: AppIcon(icon: Icons.arrow_back_ios)),
-                  AppIcon(icon: Icons.shopping_cart_outlined)
+                  GetBuilder<PopularProductController>(builder: (controller){
+                    return Stack(
+                      children: [
+                        AppIcon(icon: Icons.shopping_cart_outlined,),
+                        Get.find<PopularProductController>().totalItems>=1?
+                          Positioned(
+                            right:0, top:0,
+                            child: GestureDetector(
+                              onTap: (){
+                                Get.to(()=>CartPage());
+                              },
+
+                              child: AppIcon(icon: Icons.circle, size:20,
+                                iconColor: Colors.transparent,
+                                backgroundColor: AppColors.mainColor,),
+                            ),
+                          ):
+                            Container(),
+                        Get.find<PopularProductController>().totalItems>=1?
+                        Positioned(
+                          right:3, top:3,
+                          child: BigText(text:Get.find<PopularProductController>().totalItems.toString(),
+                          size:12, color:Colors.white,
+                          ),
+
+                        ):
+                        Container()
+                      ],
+                    );
+                  })
                 ],
               )),
           //introduction of food
@@ -142,7 +173,7 @@ class PopularFoodDetail extends StatelessWidget {
                   SizedBox(
                     width: Dimensions.width10 / 2,
                   ),
-                  BigText(text: popularProduct.quantity.toString()),
+                  BigText(text: popularProduct.inCartItems.toString()),
                   SizedBox(
                     width: Dimensions.width10 / 2,
                   ),
@@ -158,24 +189,26 @@ class PopularFoodDetail extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(
-                  top: Dimensions.height10,
-                  bottom: Dimensions.height10,
-                  left: Dimensions.width20,
-                  right: Dimensions.width20),
-              child: GestureDetector(
-                onTap: (){
-                  popularProduct.addItem(product);
-                },
-                child: BigText(
-                  text: "\$ ${product.price!} | Add to cart",
-                  color: Colors.white,
+            GestureDetector(
+              onTap: (){
+                popularProduct.addItem(product);
+              },
+              child: Container(
+                padding: EdgeInsets.only(
+                    top: Dimensions.height10,
+                    bottom: Dimensions.height10,
+                    left: Dimensions.width20,
+                    right: Dimensions.width20),
+              
+                  child: BigText(
+                    text: "\$ ${product.price!} | Add to cart",
+                    color: Colors.white,
+                  ),
+              
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                  color: AppColors.mainColor,
                 ),
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius20),
-                color: AppColors.mainColor,
               ),
             )
           ],
