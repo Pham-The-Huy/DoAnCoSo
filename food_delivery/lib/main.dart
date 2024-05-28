@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'helper/dependencies.dart' as dep;
 
-Future <void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
   runApp(const MyApp());
@@ -30,12 +30,10 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       title: 'Flutter Demo',
-
       home: MainFoodPage(),
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.route,
-      
-      //debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
