@@ -11,7 +11,9 @@ class CartController extends GetxController{
   CartController({required this.cartRepo});
   Map<int, CartModel> _items={};
 
-  Map<int, CartModel> get items => _items;
+  Map<int, CartModel> get items => _items; // only for storage and sharedpreference
+  
+  List<CartModel> storageItems=[];
 
   void addItem(ProductModel product, int quantity){
     var totalQuantity=0;
@@ -27,7 +29,8 @@ class CartController extends GetxController{
           img: value.img,
           quantity: value.quantity! + quantity,
           isExit: true,
-          time: DateTime.now().toString()
+          time: DateTime.now().toString(),
+          product: product,
         );
       });
 
@@ -45,7 +48,8 @@ class CartController extends GetxController{
               img: product.img,
               quantity: quantity,
               isExit: true,
-              time: DateTime.now().toString()
+              time: DateTime.now().toString(),
+              product: product,
           );
         });
       }
@@ -56,14 +60,18 @@ class CartController extends GetxController{
         );
       }
     }
+    cartRepo.addToCartList(getItems);
+    update();
     
   }
+  
   bool existInCart(ProductModel product){
     if(_items.containsKey(product.id)){
       return true;
     }
     return false;
   }
+  
   int getQuantity(ProductModel product){
     var quantity=0;
     if(_items.containsKey(product.id)){
@@ -76,7 +84,8 @@ class CartController extends GetxController{
     }
     return quantity;
   }
-    int get totalItems{
+  
+  int get totalItems{
       var totalQuantity=0;
       _items.forEach((key, value) {
         totalQuantity += value.quantity!;
@@ -85,9 +94,49 @@ class CartController extends GetxController{
       return totalQuantity;
     }
 
-    List<CartModel> get getItems{
+  List<CartModel> get getItems{
     return _items.entries.map((e){
       return e.value;
     }).toList();
     }
+    
+  int get totalAmount{
+      var total=0;
+      _items.forEach((key, value) {
+        total += value.price! * value.quantity!;
+      });
+      return total;
+    }
+
+  // lưu data vào storage
+  List<CartModel> getCartData(){
+    setCart = cartRepo.getCartList();
+    return storageItems;
+  }
+
+
+
+  set setCart(List<CartModel> items){
+    storageItems=items;
+    //print("Length of cart items" + storageItems.length.toString());
+    for(int i=0;i<storageItems.length;i++){
+      _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
+    }
+    //update();
+  }
+
+  void addToHistory(){
+    cartRepo.addToCartHistoryList();
+    clear();
+  }
+
+  void clear(){
+    _items={};
+    update();
+  }
+
+  List<CartModel> get getCartHistoryList{
+    return cartRepo.getCartHistoryList();
+  }
+
 }
