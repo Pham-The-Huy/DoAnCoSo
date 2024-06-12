@@ -32,7 +32,7 @@ class CartModel {
     product = ProductModel.fromJson(json['product']);
   }
 
-  Map<String, dynamic> tojson(){
+  Map<String, dynamic> toJson(){
     return{
       "id": this.id,
       "name": this.name,
