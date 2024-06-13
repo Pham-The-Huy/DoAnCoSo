@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/app/colors.dart';
+import 'package:food_delivery/pages/account/account_page.dart';
+import 'package:food_delivery/pages/auth/sign_up_page.dart';
 import 'package:food_delivery/pages/cart/cart_history.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 //import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -16,12 +18,11 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   //late PersistentTabController _controller;
 
-  
   List pages = [
     MainFoodPage(),
-    Container(child: Center(child: Text("Next page"))),
+    SignUpPage(),
     CartHistory(),
-    Container(child: Center(child: Text("Next next next page"))),
+    AccountPage(),
   ];
 
   void onTapNav(int index) {
@@ -44,34 +45,34 @@ class _HomePageState extends State<HomePage> {
   //       ];
   //   }
 
-    // List<PersistentBottomNavBarItem> _navBarsItems() {
-    //     return [
-    //         PersistentBottomNavBarItem(
-    //             icon: Icon(CupertinoIcons.home),
-    //             title: ("Home"),
-    //             activeColorPrimary: CupertinoColors.activeBlue,
-    //             inactiveColorPrimary: CupertinoColors.systemGrey,
-    //         ),
-    //         PersistentBottomNavBarItem(
-    //             icon: Icon(CupertinoIcons.archivebox_fill),
-    //             title: ("Archive"),
-    //             activeColorPrimary: CupertinoColors.activeBlue,
-    //             inactiveColorPrimary: CupertinoColors.systemGrey,
-    //         ),
-    //         PersistentBottomNavBarItem(
-    //             icon: Icon(CupertinoIcons.shopping_cart),
-    //             title: ("Cart"),
-    //             activeColorPrimary: CupertinoColors.activeBlue,
-    //             inactiveColorPrimary: CupertinoColors.systemGrey,
-    //         ),
-    //         PersistentBottomNavBarItem(
-    //             icon: Icon(CupertinoIcons.person),
-    //             title: ("Profile"),
-    //             activeColorPrimary: CupertinoColors.activeBlue,
-    //             inactiveColorPrimary: CupertinoColors.systemGrey,
-    //         ),
-    //     ];
-    // }
+  // List<PersistentBottomNavBarItem> _navBarsItems() {
+  //     return [
+  //         PersistentBottomNavBarItem(
+  //             icon: Icon(CupertinoIcons.home),
+  //             title: ("Home"),
+  //             activeColorPrimary: CupertinoColors.activeBlue,
+  //             inactiveColorPrimary: CupertinoColors.systemGrey,
+  //         ),
+  //         PersistentBottomNavBarItem(
+  //             icon: Icon(CupertinoIcons.archivebox_fill),
+  //             title: ("Archive"),
+  //             activeColorPrimary: CupertinoColors.activeBlue,
+  //             inactiveColorPrimary: CupertinoColors.systemGrey,
+  //         ),
+  //         PersistentBottomNavBarItem(
+  //             icon: Icon(CupertinoIcons.shopping_cart),
+  //             title: ("Cart"),
+  //             activeColorPrimary: CupertinoColors.activeBlue,
+  //             inactiveColorPrimary: CupertinoColors.systemGrey,
+  //         ),
+  //         PersistentBottomNavBarItem(
+  //             icon: Icon(CupertinoIcons.person),
+  //             title: ("Profile"),
+  //             activeColorPrimary: CupertinoColors.activeBlue,
+  //             inactiveColorPrimary: CupertinoColors.systemGrey,
+  //         ),
+  //     ];
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -138,5 +139,4 @@ class _HomePageState extends State<HomePage> {
   //       navBarStyle: NavBarStyle.style1, // Choose the nav bar style with this property.
   //   );
   // }
-
 }
