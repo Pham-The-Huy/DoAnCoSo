@@ -6,11 +6,13 @@ class AppTextField extends StatelessWidget {
   final TextEditingController textController;
   final String hintText;
   final IconData icon;
+  bool isObscure;
   AppTextField(
       {super.key,
       required this.textController,
       required this.hintText,
-      required this.icon});
+      required this.icon,
+      this.isObscure = false});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +20,7 @@ class AppTextField extends StatelessWidget {
           left: Dimensions.height20, right: Dimensions.height20),
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(Dimensions.radius30),
+          borderRadius: BorderRadius.circular(Dimensions.radius15),
           boxShadow: [
             BoxShadow(
               blurRadius: 10,
@@ -28,6 +30,7 @@ class AppTextField extends StatelessWidget {
             )
           ]),
       child: TextField(
+        obscureText: isObscure ? true : false,
         controller: textController,
         decoration: InputDecoration(
           //hintText,
@@ -39,21 +42,21 @@ class AppTextField extends StatelessWidget {
           ),
           //focusBorder,
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimensions.height30),
+              borderRadius: BorderRadius.circular(Dimensions.radius15),
               borderSide: BorderSide(
                 width: 1.0,
                 color: Colors.white,
               )),
           //enabledBorder,
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimensions.height30),
+              borderRadius: BorderRadius.circular(Dimensions.radius15),
               borderSide: BorderSide(
                 width: 1.0,
                 color: Colors.white,
               )),
           //border
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.height30),
+            borderRadius: BorderRadius.circular(Dimensions.radius15),
           ),
         ),
       ),
