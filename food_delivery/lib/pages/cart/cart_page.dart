@@ -11,6 +11,7 @@ import '../../app/app_constants.dart';
 import '../../app/colors.dart';
 import '../../app/dimensions.dart';
 import '../../controllers/cart_controller.dart';
+import '../../controllers/location_controller.dart';
 import '../../widgets/BigText.dart';
 import '../../widgets/SmallText.dart';
 import '../../widgets/app_icon.dart';
@@ -106,8 +107,8 @@ class CartPage extends StatelessWidget {
                                                       .product!);
                                               if (recommendedIndex < 0) {
                                                 Get.snackbar(
-                                                  "History product",
-                                                  "Product review is not available for history product",
+                                                  "Lịch sử mua hàng",
+                                                  "Không có sẵn lịch sử mua hàng",
                                                   backgroundColor:
                                                       AppColors.mainColor,
                                                   colorText: Colors.white,
@@ -116,7 +117,7 @@ class CartPage extends StatelessWidget {
                                                 Get.toNamed(RouteHelper
                                                     .getRecommendedFood(
                                                         recommendedIndex,
-                                                        "cartpage"));
+                                                        "Giỏ Hàng"));
                                               }
                                             }
                                           },
@@ -161,7 +162,7 @@ class CartPage extends StatelessWidget {
                                                           .name!,
                                                       color: Colors.black54,
                                                     ),
-                                                    SmallText(text: "Spicy"),
+                                                    SmallText(text: "Cay"),
                                                     Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
@@ -201,7 +202,7 @@ class CartPage extends StatelessWidget {
                                                                             .product!,
                                                                         -1);
                                                                     print(
-                                                                        "Remove");
+                                                                        "Xoá");
                                                                   },
                                                                   child: Icon(
                                                                     Icons
@@ -233,7 +234,7 @@ class CartPage extends StatelessWidget {
                                                                             .product!,
                                                                         1);
                                                                     print(
-                                                                        "Add");
+                                                                        "Thêm");
                                                                   },
                                                                   child: Icon(
                                                                     Icons.add,
@@ -251,7 +252,7 @@ class CartPage extends StatelessWidget {
                                 });
                           }),
                         )))
-                : NoDataPage(text: "Your Cart is Empty!");
+                : NoDataPage(text: "Giỏ hàng bạn đang trống!");
           })
         ],
       ),
@@ -300,8 +301,13 @@ class CartPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           if(Get.find<AuthController>().userLoggedIn()){
+                            print("Đăng nhập?");
                             // print("click");
-                            cartController.addToHistory();
+                            if(Get.find<LocationController>().addressList.isEmpty){
+                              Get.toNamed(RouteHelper.getAddressPage());
+                            }else{
+                              Get.offNamed(RouteHelper.getInitial());
+                            }
                           }else{
                             Get.toNamed(RouteHelper.getSignInPage());
                           }
@@ -309,12 +315,12 @@ class CartPage extends StatelessWidget {
                         },
                         child: Container(
                           padding: EdgeInsets.only(
-                              top: Dimensions.height10,
-                              bottom: Dimensions.height10,
+                              top: Dimensions.height20,
+                              bottom: Dimensions.height20,
                               left: Dimensions.width20,
                               right: Dimensions.width20),
                           child: BigText(
-                            text: "Check out",
+                            text: "Thanh Toán",
                             color: Colors.white,
                           ),
                           decoration: BoxDecoration(

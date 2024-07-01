@@ -60,7 +60,7 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
                   child: Row(
                     children: [
                       SmallText(
-                        text: "Show more",
+                        text: "Chi tiết ",
                         color: AppColors.mainColor,
                       ),
                       Icon(

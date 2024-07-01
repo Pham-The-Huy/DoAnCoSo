@@ -72,7 +72,7 @@ class CartHistory extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                BigText(text: "Cart History", color: Colors.white),
+                BigText(text: "Lịch sử mua hàng", color: Colors.white),
                 AppIcon(
                   icon: Icons.shopping_cart_outlined,
                   iconColor: AppColors.mainColor,
@@ -250,7 +250,7 @@ class CartHistory extends StatelessWidget {
                     height: MediaQuery.of(context).size.height / 1.5,
                     child: const Center(
                       child: NoDataPage(
-                        text: "You didn't buy anything so far!",
+                        text: "Bạn chưa có đơn hàng nào!",
                         imgPath: "assets/images/empty-cart.png",
                       ),
                     ),

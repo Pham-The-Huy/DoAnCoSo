@@ -134,7 +134,7 @@ class PopularFoodDetail extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      BigText(text: "Introduce"),
+                      BigText(text: "Mô tả"),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -216,7 +216,7 @@ class PopularFoodDetail extends StatelessWidget {
                         left: Dimensions.width20,
                         right: Dimensions.width20),
                     child: BigText(
-                      text: "\$ ${product.price!} | Add to cart",
+                      text: "${product.price!}đ | Thêm",
                       color: Colors.white,
                     ),
                     decoration: BoxDecoration(

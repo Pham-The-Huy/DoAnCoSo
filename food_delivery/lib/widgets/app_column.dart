@@ -39,33 +39,33 @@ class AppColumn extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            SmallText(text: '1287'),
-            const SizedBox(
-              width: 10,
-            ),
-            SmallText(text: 'Comments')
+            // SmallText(text: '1287'),
+            // const SizedBox(
+            //   width: 10,
+            // ),
+            // SmallText(text: 'Comments')
           ],
         ),
         SizedBox(
           height: Dimensions.height20,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconAndTextWidget(
-                icon: Icons.circle_sharp,
-                text: "Normal",
-                iconColor: AppColors.iconColor1),
-            IconAndTextWidget(
-                icon: Icons.location_on,
-                text: "1,7km",
-                iconColor: AppColors.mainColor),
-            IconAndTextWidget(
-                icon: Icons.access_time_rounded,
-                text: "32min",
-                iconColor: AppColors.iconColor2)
-          ],
-        )
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     IconAndTextWidget(
+        //         icon: Icons.circle_sharp,
+        //         text: "Normal",
+        //         iconColor: AppColors.iconColor1),
+        //     IconAndTextWidget(
+        //         icon: Icons.location_on,
+        //         text: "1,7km",
+        //         iconColor: AppColors.mainColor),
+        //     IconAndTextWidget(
+        //         icon: Icons.access_time_rounded,
+        //         text: "32min",
+        //         iconColor: AppColors.iconColor2)
+        //   ],
+        // )
       ],
     );
   }

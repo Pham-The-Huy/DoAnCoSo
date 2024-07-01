@@ -27,6 +27,7 @@ class RecommendedFoodDetail extends StatelessWidget {
     Get.find<PopularProductController>()
         .initProduct(product, Get.find<CartController>());
     return Scaffold(
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -156,7 +157,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                         icon: Icons.remove),
                   ),
                   BigText(
-                    text: "\$ ${product.price!} X ${controller.inCartItems} ",
+                    text: " ${product.price!} đ X ${controller.inCartItems} ",
                     color: AppColors.mainBlackColor,
                     size: Dimensions.font26,
                   ),
@@ -213,7 +214,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                             left: Dimensions.width20,
                             right: Dimensions.width20),
                         child: BigText(
-                          text: "\$ ${product.price!} | Add to cart",
+                          text: "${product.price!}đ | Thêm",
                           color: Colors.white,
                         ),
                         decoration: BoxDecoration(

@@ -94,7 +94,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              BigText(text: 'Recommended'),
+              BigText(text: 'Gợi Ý'),
               SizedBox(
                 width: Dimensions.width10,
               ),
@@ -110,7 +110,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 5),
-                child: SmallText(text: 'Food pairing'),
+                child: SmallText(text: 'Trải nghiệm thử'),
               )
             ],
           ),
@@ -161,7 +161,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             //     top: BorderSide(color: Color(0xFFe8e8e8)),
                             //     right: BorderSide(color: Color(0xFFe8e8e8)),
                             //     bottom: BorderSide(color: Color(0xFFe8e8e8))),
-              
+
                             color: Colors.white,
                             boxShadow: const [
                               BoxShadow(
@@ -183,27 +183,27 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               SizedBox(
                                 height: Dimensions.height10,
                               ),
-                              SmallText(text: 'With vietnamese characteristics'),
+                              SmallText(text: ' '),
                               SizedBox(
                                 height: Dimensions.height10,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  IconAndTextWidget(
-                                      icon: Icons.circle_sharp,
-                                      text: "Normal",
-                                      iconColor: AppColors.iconColor1),
-                                  IconAndTextWidget(
-                                      icon: Icons.location_on,
-                                      text: "1,7km",
-                                      iconColor: AppColors.mainColor),
-                                  IconAndTextWidget(
-                                      icon: Icons.access_time_rounded,
-                                      text: "32min",
-                                      iconColor: AppColors.iconColor2)
-                                ],
-                              ),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              //   children: [
+                              //     IconAndTextWidget(
+                              //         icon: Icons.circle_sharp,
+                              //         text: "Normal",
+                              //         iconColor: AppColors.iconColor1),
+                              //     IconAndTextWidget(
+                              //         icon: Icons.location_on,
+                              //         text: "1,7km",
+                              //         iconColor: AppColors.mainColor),
+                              //     IconAndTextWidget(
+                              //         icon: Icons.access_time_rounded,
+                              //         text: "32min",
+                              //         iconColor: AppColors.iconColor2)
+                              //   ],
+                              // ),
                             ],
                           ),
                         ),

@@ -11,6 +11,8 @@ import 'package:food_delivery/widgets/account_widget.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/location_controller.dart';
+
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
 
@@ -24,7 +26,7 @@ class AccountPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: AppColors.mainColor,
           title: BigText(
-            text: "Profile",
+            text: "Thông Tin",
             size: 24,
             color: Colors.white,
           ),
@@ -103,17 +105,45 @@ class AccountPage extends StatelessWidget {
                                       height: Dimensions.height30,
                                     ),
                                     //address
-                                    AccountWidget(
-                                        appIcon: AppIcon(
-                                          icon: Icons.location_on,
-                                          backgroundColor:
-                                              AppColors.yellowColor,
-                                          iconColor: Colors.white,
-                                          iconSize: Dimensions.height10 * 5 / 2,
-                                          size: Dimensions.height10 * 5,
-                                        ),
-                                        bigText:
-                                            BigText(text: "La Khe Ha Dong")),
+                                    GetBuilder<LocationController>(builder: (locationController){
+                                      if(_userLoggedIn&&locationController.addressList.isEmpty){
+                                        return GestureDetector(
+                                          onTap: (){
+                                            Get.offNamed(RouteHelper.getAddressPage());
+                                          },
+                                          child: AccountWidget(
+                                              appIcon: AppIcon(
+                                                icon: Icons.location_on,
+                                                backgroundColor:
+                                                AppColors.yellowColor,
+                                                iconColor: Colors.white,
+                                                iconSize: Dimensions.height10 * 5 / 2,
+                                                size: Dimensions.height10 * 5,
+                                              ),
+                                              bigText:
+                                              BigText(text: "Na/Na")
+                                          ),
+                                        );
+                                      }else{
+                                        return GestureDetector(
+                                          onTap: (){
+                                            Get.offNamed(RouteHelper.getAddressPage());
+                                          },
+                                          child: AccountWidget(
+                                              appIcon: AppIcon(
+                                                icon: Icons.location_on,
+                                                backgroundColor:
+                                                AppColors.yellowColor,
+                                                iconColor: Colors.white,
+                                                iconSize: Dimensions.height10 * 5 / 2,
+                                                size: Dimensions.height10 * 5,
+                                              ),
+                                              bigText:
+                                              BigText(text: "Địa chỉ của bạn")
+                                          ),
+                                        );
+                                      }
+                                    }),
                                     SizedBox(
                                       height: Dimensions.height30,
                                     ),
@@ -126,7 +156,7 @@ class AccountPage extends StatelessWidget {
                                           iconSize: Dimensions.height10 * 5 / 2,
                                           size: Dimensions.height10 * 5,
                                         ),
-                                        bigText: BigText(text: "Message")),
+                                        bigText: BigText(text: "Tin nhắn")),
                                     SizedBox(
                                       height: Dimensions.height30,
                                     ),
@@ -155,7 +185,7 @@ class AccountPage extends StatelessWidget {
                                                 Dimensions.height10 * 5 / 2,
                                             size: Dimensions.height10 * 5,
                                           ),
-                                          bigText: BigText(text: "Logout")),
+                                          bigText: BigText(text: "Đăng Xuất")),
                                     )
                                   ],
                                 ),
