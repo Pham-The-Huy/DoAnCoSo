@@ -43,8 +43,10 @@ dependencies:
   flutter_map: ^6.2.1
   latlong2: ^0.9.1
   geocoding: ^2.0.4
-  geolocator: ^9.0.2
+  geolocator: ^10.1.1
   google_maps_flutter: ^2.7.0
+  open_street_map_search_and_pick: ^0.1.1
+  webview_flutter: ^2.0.9
 
 dev_dependencies:
   flutter_test:

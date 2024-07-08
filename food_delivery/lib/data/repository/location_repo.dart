@@ -1,6 +1,7 @@
 import 'package:food_delivery/app/app_constants.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong2/latlong.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/address_model.dart';
 import '../api/api_client.dart';

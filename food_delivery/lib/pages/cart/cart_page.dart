@@ -4,6 +4,7 @@ import 'package:food_delivery/base/no_data_page.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:food_delivery/controllers/user_controller.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:get/get.dart';
 
@@ -300,23 +301,26 @@ class CartPage extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(Get.find<AuthController>().userLoggedIn()){
-                            print("Đăng nhập?");
+                          if (Get.find<AuthController>().userLoggedIn()) {
+                            // print("Đăng nhập?");
                             // print("click");
-                            if(Get.find<LocationController>().addressList.isEmpty){
+                            if (Get.find<LocationController>()
+                                .addressList
+                                .isEmpty) {
                               Get.toNamed(RouteHelper.getAddressPage());
-                            }else{
-                              Get.offNamed(RouteHelper.getInitial());
+                            } else {
+                              // Get.offNamed(RouteHelper.getInitial());
+                              Get.offNamed(RouteHelper.getPaymentPage("100127", Get.find<UserController>().userModel!.id!));
                             }
-                          }else{
+                          } else {
                             Get.toNamed(RouteHelper.getSignInPage());
                           }
                           //popularProduct.addItem(product);
                         },
                         child: Container(
                           padding: EdgeInsets.only(
-                              top: Dimensions.height20,
-                              bottom: Dimensions.height20,
+                              top: Dimensions.height10,
+                              bottom: Dimensions.height10,
                               left: Dimensions.width20,
                               right: Dimensions.width20),
                           child: BigText(

@@ -5,11 +5,8 @@ import 'package:food_delivery/app/colors.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
-import 'package:food_delivery/pages/auth/sign_in_page.dart';
-import 'package:food_delivery/pages/auth/sign_up_page.dart';
-import 'package:food_delivery/pages/cart/cart_page.dart';
-import 'package:food_delivery/pages/food/popular_food_detail.dart';
-import 'package:food_delivery/pages/food/recommended_food_detail.dart';
+import 'package:food_delivery/pages/address/add_address_page.dart';
+import 'package:food_delivery/pages/address/test.dart';
 import 'package:food_delivery/pages/home/food_page_body.dart';
 import 'package:food_delivery/pages/home/home_page.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
@@ -23,8 +20,15 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
   runApp(const MyApp());
+  // runApp(MaterialApp(
+  //   home: AddAddressPage(),
+  // ));
 }
-
+// void main(){
+//   runApp(MaterialApp(
+//     home: OpenStreetMapTutorial(),
+//   ));
+// }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -44,8 +48,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primaryColor: AppColors.mainColor,
             fontFamily: "Lato",
-          )
-          //debugShowCheckedModeBanner: false,
+          ),
+          debugShowCheckedModeBanner: false,
         );
       });
     });
