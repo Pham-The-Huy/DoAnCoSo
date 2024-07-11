@@ -22,6 +22,9 @@ class AppConstants {
       'https://api.mapbox.com/styles/v1/viet29/clxv8a38d00wc01qm20qzf68u/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidmlldDI5IiwiYSI6ImNseHVqcmFzcTFqcHcyanB0bGd5eHZpbXAifQ.09RsVVUI9mJAcM7lpYasqQ';
   static const String ZONE_URI = '/api/v1/config/get-zone-id';
 
+  //oders
+  static const PLACE_ORDER_URI='/api/v1/customer/order/place';  
+
   static const String TOKEN = "";
   static const String PHONE = "";
   static const String PASSWORD = "";

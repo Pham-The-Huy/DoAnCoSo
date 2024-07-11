@@ -43,7 +43,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pick Address'),
+        title: Text('Cập nhật địa chỉ'),
       ),
       body: OpenStreetMapSearchAndPick(
         buttonColor: Colors.blue,

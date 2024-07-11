@@ -255,9 +255,10 @@ class _AddAddressPageState extends State<AddAddressPage> {
                           .then((response) {
                         if (response.isSuccess) {
                           Get.back();
-                          Get.snackbar("Address", "Added Successfully");
+                          Get.snackbar(
+                              "Địa chỉ", "Cập nhật địa chỉ thành công");
                         } else {
-                          Get.snackbar("Address", "Couldn't save address");
+                          Get.snackbar("Địa chỉ", "Không thể cập nhật địa chỉ");
                         }
                       });
                     },

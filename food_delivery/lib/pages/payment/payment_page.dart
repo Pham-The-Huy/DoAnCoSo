@@ -94,7 +94,7 @@ class _PaymentPageState extends State<PaymentPage> {
   }
 
   void _redirect(String url) {
-    print("redirect");
+    // print("redirect");
     if(_canRedirect) {
       bool _isSuccess = url.contains('success') && url.contains(AppConstants.BASE_URL);
       bool _isFailed = url.contains('fail') && url.contains(AppConstants.BASE_URL);
@@ -103,9 +103,9 @@ class _PaymentPageState extends State<PaymentPage> {
         _canRedirect = false;
       }
       if (_isSuccess) {
-        // Get.offNamed(RouteHelper.getOrderSuccessRoute(widget.orderModel.id.toString(), 'success'));
+        Get.offNamed(RouteHelper.getOrderSuccessPage(widget.orderModel.id.toString(), 'success'));
       } else if (_isFailed || _isCancel) {
-        // Get.offNamed(RouteHelper.getOrderSuccessRoute(widget.orderModel.id.toString(), 'fail'));
+        Get.offNamed(RouteHelper.getOrderSuccessPage(widget.orderModel.id.toString(), 'fail'));
       }else{
         print("Encountered problem");
       }

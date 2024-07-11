@@ -1,11 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/base/common_text_button.dart';
 import 'package:food_delivery/base/no_data_page.dart';
+import 'package:food_delivery/base/show_custom_snackbar.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
+import 'package:food_delivery/controllers/order_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/controllers/user_controller.dart';
+import 'package:food_delivery/models/place_order_model.dart';
+import 'package:food_delivery/pages/order/delivery_option.dart';
 import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/pages/order/payment_option_button.dart';
+import 'package:food_delivery/widgets/app_text_field.dart';
 import 'package:get/get.dart';
 
 import '../../app/app_constants.dart';
@@ -23,6 +30,7 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _noteController = TextEditingController();
     return Scaffold(
       body: Stack(
         children: [
@@ -253,17 +261,17 @@ class CartPage extends StatelessWidget {
                                 });
                           }),
                         )))
-                : NoDataPage(text: "Giỏ hàng bạn đang trống!");
+                : const NoDataPage(text: "Giỏ hàng bạn đang trống!");
           })
         ],
       ),
       bottomNavigationBar: GetBuilder<CartController>(
         builder: (cartController) {
           return Container(
-            height: Dimensions.bottomHeightBar,
+            height: Dimensions.bottomHeightBar + 50,
             padding: EdgeInsets.only(
-                top: Dimensions.height30,
-                bottom: Dimensions.height30,
+                top: Dimensions.height10,
+                bottom: Dimensions.height10,
                 left: Dimensions.width20,
                 right: Dimensions.width20),
             decoration: BoxDecoration(
@@ -272,74 +280,216 @@ class CartPage extends StatelessWidget {
                     topLeft: Radius.circular(Dimensions.radius20 * 2),
                     topRight: Radius.circular(Dimensions.radius20 * 2))),
             child: cartController.getItems.length > 0
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(
-                            top: Dimensions.height10,
-                            bottom: Dimensions.height10,
-                            left: Dimensions.width20,
-                            right: Dimensions.width20),
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(Dimensions.radius20),
-                            color: Colors.white),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: Dimensions.width10 / 2,
-                            ),
-                            BigText(
-                                text: "\$" +
-                                    cartController.totalAmount.toString()),
-                            SizedBox(
-                              width: Dimensions.width10 / 2,
-                            ),
-                          ],
+                ? Column(children: [
+                    InkWell(
+                      onTap: () => showModalBottomSheet(
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (_) {
+                            return Column(
+                              children: [
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.9,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(
+                                                Dimensions.radius20),
+                                            topRight: Radius.circular(
+                                                Dimensions.radius20)),
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            height: 520,
+                                            padding: EdgeInsets.only(
+                                              left: Dimensions.width20,
+                                              right: Dimensions.width20,
+                                              top: Dimensions.height20,
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const PaymentOptionButton(
+                                                  icon: Icons.money,
+                                                  title:
+                                                      "Thanh toán khi nhận hàng",
+                                                  subtitle:
+                                                      "Vui lòng thanh toán khi nhận hàng",
+                                                  index: 0,
+                                                ),
+                                                SizedBox(
+                                                  height: Dimensions.height10,
+                                                ),
+                                                const PaymentOptionButton(
+                                                  icon: Icons.payment,
+                                                  title: "Thanh toán bằng thẻ",
+                                                  subtitle:
+                                                      "Phương thức thanh toán nhanh gọn và an toàn",
+                                                  index: 1,
+                                                ),
+                                                SizedBox(
+                                                  height: Dimensions.height30,
+                                                ),
+                                                Text(
+                                                  "Phương thức giao hàng",
+                                                  style: TextStyle(
+                                                      fontFamily: "Roboto",
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize:
+                                                          Dimensions.font20),
+                                                ),
+                                                SizedBox(
+                                                  height:
+                                                      Dimensions.height10 / 2,
+                                                ),
+                                                DeliveryOption(
+                                                    value: "delivery",
+                                                    title: "Giao hàng tận nhà",
+                                                    amount: double.parse(
+                                                        Get.find<
+                                                                CartController>()
+                                                            .totalAmount
+                                                            .toString()),
+                                                    isFree: false),
+                                                SizedBox(
+                                                  height:
+                                                      Dimensions.height10 / 2,
+                                                ),
+                                                DeliveryOption(
+                                                    value: "take away",
+                                                    title: "Mang đi",
+                                                    amount: 10.0,
+                                                    isFree: true),
+                                                SizedBox(
+                                                  height: Dimensions.height20,
+                                                ),
+                                                Text(
+                                                  "Ghi chú",
+                                                  style: TextStyle(
+                                                      fontFamily: "Roboto",
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize:
+                                                          Dimensions.font20),
+                                                ),
+                                                AppTextField(
+                                                  textController:
+                                                      _noteController,
+                                                  hintText: '',
+                                                  icon: Icons.note,
+                                                  maxLines: false,
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          }),
+                      child: const SizedBox(
+                        width: double.maxFinite,
+                        child: CommonTextButton(
+                          text: "Lựa chọn phương thức thanh toán",
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          if (Get.find<AuthController>().userLoggedIn()) {
-                            // print("Đăng nhập?");
-                            // print("click");
-                            if (Get.find<LocationController>()
-                                .addressList
-                                .isEmpty) {
-                              Get.toNamed(RouteHelper.getAddressPage());
-                            } else {
-                              // Get.offNamed(RouteHelper.getInitial());
-                              Get.offNamed(RouteHelper.getPaymentPage("100127", Get.find<UserController>().userModel!.id!));
-                            }
-                          } else {
-                            Get.toNamed(RouteHelper.getSignInPage());
-                          }
-                          //popularProduct.addItem(product);
-                        },
-                        child: Container(
+                    ),
+                    SizedBox(
+                      height: Dimensions.height10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
                           padding: EdgeInsets.only(
                               top: Dimensions.height10,
                               bottom: Dimensions.height10,
                               left: Dimensions.width20,
                               right: Dimensions.width20),
-                          child: BigText(
-                            text: "Thanh Toán",
-                            color: Colors.white,
-                          ),
                           decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(Dimensions.radius20),
-                            color: AppColors.mainColor,
+                              borderRadius:
+                                  BorderRadius.circular(Dimensions.radius20),
+                              color: Colors.white),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: Dimensions.width10 / 2,
+                              ),
+                              BigText(
+                                  text: cartController.totalAmount.toString() +
+                                      "\đ"),
+                              SizedBox(
+                                width: Dimensions.width10 / 2,
+                              ),
+                            ],
                           ),
                         ),
-                      )
-                    ],
-                  )
+                        GestureDetector(
+                            onTap: () {
+                              if (Get.find<AuthController>().userLoggedIn()) {
+                                // print("Đăng nhập?");
+                                // print("click");
+                                if (Get.find<LocationController>()
+                                    .addressList
+                                    .isEmpty) {
+                                  Get.toNamed(RouteHelper.getAddressPage());
+                                } else {
+                                  var location = Get.find<LocationController>()
+                                      .getUserAddress();
+                                  var cart =
+                                      Get.find<CartController>().getItems;
+                                  var user =
+                                      Get.find<UserController>().userModel;
+                                  PlaceOrderBody placeOrder = PlaceOrderBody(
+                                    cart: cart,
+                                    orderAmount: 100.0,
+                                    orderNote: "Not about the food",
+                                    address: location.address,
+                                    latitude: location.latitude,
+                                    longitude: location.longitude,
+                                    contactPersonNumber: user.phone,
+                                    contactPersonName: user.name,
+                                    scheduleAt: '',
+                                    distance: 10.0,
+                                  );
+                                  Get.find<OrderController>()
+                                      .placeOrder(placeOrder, _callback);
+                                }
+                              } else {
+                                Get.toNamed(RouteHelper.getSignInPage());
+                              }
+                              //popularProduct.addItem(product);
+                            },
+                            child: const CommonTextButton(text: "Thanh toán"))
+                      ],
+                    )
+                  ])
                 : Container(),
           );
         },
       ),
     );
+  }
+
+  void _callback(bool isSuccess, String message, String orderID) {
+    if (isSuccess) {
+      Get.find<CartController>().clear();
+      Get.find<CartController>().removeCartSharedPreference();
+      Get.find<CartController>().addToHistory();
+      Get.offNamed(RouteHelper.getPaymentPage(
+          orderID, Get.find<UserController>().userModel.id));
+    } else {
+      showCustomSnackBar(message);
+    }
   }
 }

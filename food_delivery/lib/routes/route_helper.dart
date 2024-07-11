@@ -36,7 +36,7 @@ class RouteHelper {
   static String getAddressPage() => '$addAddress';
   static String getPickAddressPage() => '$pickAddressMap';
   static String getPaymentPage(String id, int userID) => '$payment?id=$id&userID=$userID';
-  static String getOrderSuccessPage() => '$orderSuccess';
+  static String getOrderSuccessPage(String orderID, String status) => '$orderSuccess?id=$orderID&status=$status';
 
   static List<GetPage> route = [
     GetPage(
@@ -95,6 +95,9 @@ class RouteHelper {
             orderModel: OrderModel(
                 id: int.parse(Get.parameters['id']!),
                 userId: int.parse(Get.parameters['userID']!)))),
-    // GetPage(name: orderSuccess, page: ()=>OrderSuccessPage())
+    // GetPage(name: orderSuccess, page: ()=>OrderSuccessPage(
+    //   orderID:Get.parameters['id'],
+    //   status:Get.parameters['status'].toString().contains("success")?1:0,
+    // ))
   ];
 }
