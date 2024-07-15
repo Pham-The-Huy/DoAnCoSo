@@ -23,7 +23,8 @@ class AppConstants {
   static const String ZONE_URI = '/api/v1/config/get-zone-id';
 
   //oders
-  static const PLACE_ORDER_URI='/api/v1/customer/order/place';  
+  static const PLACE_ORDER_URI='/api/v1/customer/order/place';
+  static const ORDER_LIST_URI='/api/v1/customer/order/list';  
 
   static const String TOKEN = "";
   static const String PHONE = "";

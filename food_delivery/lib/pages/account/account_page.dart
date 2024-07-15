@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/app/colors.dart';
 import 'package:food_delivery/app/dimensions.dart';
+import 'package:food_delivery/base/custom_app_bar.dart';
 import 'package:food_delivery/base/custom_loader.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
@@ -18,24 +19,17 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _userLoggedIn = Get.find<AuthController>().userLoggedIn();
-    if (_userLoggedIn) {
+    bool userLoggedIn = Get.find<AuthController>().userLoggedIn();
+    if (userLoggedIn) {
       Get.find<UserController>().getUserInfo();
     }
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.mainColor,
-          title: BigText(
-            text: "Thông Tin",
-            size: 24,
-            color: Colors.white,
-          ),
-        ),
+        appBar: CustomAppBar(title: "Thông tin cá nhân"),
         body: GetBuilder<UserController>(
           builder: (userController) {
-            return _userLoggedIn
+            return userLoggedIn
                 ? (userController.isLoading
-                    ? CustomLoader() // Hiển thị loader khi dữ liệu đang tải
+                    ? const CustomLoader()
                     : Container(
                         width: double.maxFinite,
                         margin: EdgeInsets.only(top: Dimensions.height20),
@@ -107,7 +101,7 @@ class AccountPage extends StatelessWidget {
                                     //address
                                     GetBuilder<LocationController>(
                                         builder: (locationController) {
-                                      if (_userLoggedIn &&
+                                      if (userLoggedIn &&
                                           locationController
                                               .addressList.isEmpty) {
                                         return GestureDetector(
@@ -155,7 +149,7 @@ class AccountPage extends StatelessWidget {
                                     AccountWidget(
                                         appIcon: AppIcon(
                                           icon: Icons.message_outlined,
-                                          backgroundColor: Colors.redAccent,
+                                          backgroundColor: Colors.blueAccent,
                                           iconColor: Colors.white,
                                           iconSize: Dimensions.height10 * 5 / 2,
                                           size: Dimensions.height10 * 5,
