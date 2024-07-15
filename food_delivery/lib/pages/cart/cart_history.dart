@@ -68,11 +68,18 @@ class CartHistory extends StatelessWidget {
             height: Dimensions.height10 * 10,
             color: AppColors.mainColor,
             width: double.maxFinite,
-            padding: EdgeInsets.only(top: Dimensions.height45),
+            padding: EdgeInsets.only(
+                top: Dimensions.height45,
+                left: Dimensions.width20,
+                right: Dimensions.width20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BigText(text: "Lịch sử mua hàng", color: Colors.white),
+                BigText(
+                  text: "Lịch sử mua hàng",
+                  color: Colors.white,
+                  size: 24,
+                ),
                 AppIcon(
                   icon: Icons.shopping_cart_outlined,
                   iconColor: AppColors.mainColor,

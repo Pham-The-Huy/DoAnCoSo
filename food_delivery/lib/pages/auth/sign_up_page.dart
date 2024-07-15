@@ -89,16 +89,18 @@ class SignUpPage extends StatelessWidget {
                       ),
                       //password
                       AppTextField(
-                          textController: passwordController,
-                          hintText: "Password",
-                          icon: Icons.password, isObscure: true,),
+                        textController: passwordController,
+                        hintText: "Mật khẩu",
+                        icon: Icons.password,
+                        isObscure: true,
+                      ),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
                       //name
                       AppTextField(
                           textController: nameController,
-                          hintText: "Name",
+                          hintText: "Tên tài khoản",
                           icon: Icons.person),
                       SizedBox(
                         height: Dimensions.height20,
@@ -106,7 +108,7 @@ class SignUpPage extends StatelessWidget {
                       //phone
                       AppTextField(
                           textController: phoneController,
-                          hintText: "Phone",
+                          hintText: "Số điện thoại",
                           icon: Icons.phone),
                       SizedBox(
                         height: Dimensions.height20,
@@ -126,7 +128,7 @@ class SignUpPage extends StatelessWidget {
                           ),
                           child: Center(
                             child: BigText(
-                              text: "Sign up",
+                              text: "Đăng kí",
                               size: Dimensions.font20 + Dimensions.font20 / 2,
                               color: Colors.white,
                             ),
@@ -141,7 +143,7 @@ class SignUpPage extends StatelessWidget {
                           text: TextSpan(
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () => Get.back(),
-                              text: "Have an account already?",
+                              text: "Đã có tài khoản?",
                               style: TextStyle(
                                 color: Colors.grey[500],
                                 fontSize: Dimensions.font20,
@@ -152,8 +154,7 @@ class SignUpPage extends StatelessWidget {
                       //sign up options
                       RichText(
                           text: TextSpan(
-                              text:
-                                  "Sign up using one of the following methods",
+                              text: "Đăng kí tài khoản bằng",
                               style: TextStyle(
                                 color: Colors.grey[500],
                                 fontSize: Dimensions.font16,

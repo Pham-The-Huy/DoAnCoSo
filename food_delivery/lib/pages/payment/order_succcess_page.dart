@@ -5,10 +5,10 @@ import 'package:food_delivery/base/custom_button.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:get/get.dart';
 
-class OrderSucccessPage extends StatelessWidget {
+class OrderSuccessPage extends StatelessWidget {
   final String orderID;
   final int status;
-  const OrderSucccessPage(
+  const OrderSuccessPage(
       {super.key, required this.orderID, required this.status});
 
   @override
