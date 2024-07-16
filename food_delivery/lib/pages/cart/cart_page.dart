@@ -350,7 +350,7 @@ class CartPage extends StatelessWidget {
                                                     child: Column(
                                                       children: [
                                                         Container(
-                                                          height: 520,
+                                                          // height: 520,
                                                           padding:
                                                               EdgeInsets.only(
                                                             left: Dimensions
@@ -458,7 +458,7 @@ class CartPage extends StatelessWidget {
                                                               ),
                                                               SizedBox(
                                                                 height: Dimensions
-                                                                    .height10,
+                                                                    .height20,
                                                               ),
                                                               GestureDetector(
                                                                   onTap: () {
