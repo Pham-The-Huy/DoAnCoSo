@@ -115,13 +115,13 @@ class _HomePageState extends State<HomePage> {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(Dimensions.radius30),
                 topRight: Radius.circular(Dimensions.radius30)),
-            color: AppColors.mainBlackColor),
+            color: AppColors.mainColor),
         child: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: Dimensions.width15, vertical: Dimensions.height10),
           child: GNav(
             selectedIndex: _selectedIndex,
-            backgroundColor: AppColors.mainBlackColor,
+            backgroundColor: AppColors.mainColor,
             color: Colors.white,
             activeColor: Colors.black,
             tabBackgroundColor: Colors.white,
