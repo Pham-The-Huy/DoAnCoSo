@@ -47,6 +47,7 @@ dependencies:
   google_maps_flutter: ^2.7.0
   open_street_map_search_and_pick: ^0.1.1
   webview_flutter: ^2.0.9
+  google_nav_bar: ^5.0.6
 
 dev_dependencies:
   flutter_test:

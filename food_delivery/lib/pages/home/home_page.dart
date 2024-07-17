@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/app/colors.dart';
+import 'package:food_delivery/app/dimensions.dart';
 import 'package:food_delivery/pages/account/account_page.dart';
 import 'package:food_delivery/pages/auth/sign_in_page.dart';
 import 'package:food_delivery/pages/auth/sign_up_page.dart';
 import 'package:food_delivery/pages/cart/cart_history.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/pages/order/order_page.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 //import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -79,35 +81,86 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: pages[_selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: AppColors.mainColor,
-          unselectedItemColor: Colors.amberAccent,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedFontSize: 0.0,
-          unselectedFontSize: 0.0,
-          currentIndex: _selectedIndex,
-          onTap: onTapNav,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.archive),
-              label: "History",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined),
-              label: "Cart",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              label: "Profile",
-            ),
-          ],
-        ));
+      body: pages[_selectedIndex],
+      //       bottomNavigationBar: BottomNavigationBar(
+      //         selectedItemColor: AppColors.mainColor,
+      //         unselectedItemColor: Colors.black,
+      //         showSelectedLabels: false,
+      //         showUnselectedLabels: false,
+      //         selectedFontSize: 0.0,
+      //         unselectedFontSize: 0.0,
+      //         currentIndex: _selectedIndex,
+      //         onTap: onTapNav,
+      //         items: const [
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.home_outlined),
+      //             label: "Home",
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.archive),
+      //             label: "History",
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.shopping_cart_outlined),
+      //             label: "Cart",
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(Icons.person_outline),
+      //             label: "Profile",
+      //           ),
+      //         ],
+      //       )
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Dimensions.radius30),
+                topRight: Radius.circular(Dimensions.radius30)),
+            color: AppColors.mainBlackColor),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: Dimensions.width15, vertical: Dimensions.height10),
+          child: GNav(
+            selectedIndex: _selectedIndex,
+            backgroundColor: AppColors.mainBlackColor,
+            color: Colors.white,
+            activeColor: Colors.black,
+            tabBackgroundColor: Colors.white,
+            gap: 5,
+            tabs: [
+              GButton(
+                icon: Icons.home,
+                text: 'Trang chủ',
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimensions.width10,
+                    vertical: Dimensions.height10),
+              ),
+              GButton(
+                icon: Icons.archive,
+                text: 'Lịch sử',
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimensions.width10,
+                    vertical: Dimensions.height10),
+              ),
+              GButton(
+                icon: Icons.shopping_cart_outlined,
+                text: 'Giỏ hàng',
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimensions.width10,
+                    vertical: Dimensions.height10),
+              ),
+              GButton(
+                icon: Icons.person_outline,
+                text: 'Trang cá nhân',
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimensions.width10,
+                    vertical: Dimensions.height10),
+              ),
+            ],
+            onTabChange: onTapNav,
+          ),
+        ),
+      ),
+    );
   }
 
   // @override

@@ -49,143 +49,172 @@ class AccountPage extends StatelessWidget {
                             ),
                             Expanded(
                               child: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    //name
-                                    AccountWidget(
-                                        appIcon: AppIcon(
-                                          icon: Icons.person,
-                                          backgroundColor: AppColors.mainColor,
-                                          iconColor: Colors.white,
-                                          iconSize: Dimensions.height10 * 5 / 2,
-                                          size: Dimensions.height10 * 5,
-                                        ),
-                                        bigText: BigText(
-                                            text:
-                                                userController.userModel.name)),
-                                    SizedBox(
-                                      height: Dimensions.height30,
-                                    ),
-                                    //phone
-                                    AccountWidget(
-                                        appIcon: AppIcon(
-                                          icon: Icons.phone,
-                                          backgroundColor:
-                                              AppColors.yellowColor,
-                                          iconColor: Colors.white,
-                                          iconSize: Dimensions.height10 * 5 / 2,
-                                          size: Dimensions.height10 * 5,
-                                        ),
-                                        bigText: BigText(
-                                            text: userController
-                                                .userModel.phone)),
-                                    SizedBox(
-                                      height: Dimensions.height30,
-                                    ),
-                                    //email
-                                    AccountWidget(
-                                        appIcon: AppIcon(
-                                          icon: Icons.email,
-                                          backgroundColor:
-                                              AppColors.yellowColor,
-                                          iconColor: Colors.white,
-                                          iconSize: Dimensions.height10 * 5 / 2,
-                                          size: Dimensions.height10 * 5,
-                                        ),
-                                        bigText: BigText(
-                                            text: userController
-                                                .userModel.email)),
-                                    SizedBox(
-                                      height: Dimensions.height30,
-                                    ),
-                                    //address
-                                    GetBuilder<LocationController>(
-                                        builder: (locationController) {
-                                      if (userLoggedIn &&
-                                          locationController
-                                              .addressList.isEmpty) {
-                                        return GestureDetector(
-                                          onTap: () {
-                                            Get.offNamed(
-                                                RouteHelper.getAddressPage());
-                                          },
-                                          child: AccountWidget(
-                                              appIcon: AppIcon(
-                                                icon: Icons.location_on,
-                                                backgroundColor:
-                                                    AppColors.yellowColor,
-                                                iconColor: Colors.white,
-                                                iconSize:
-                                                    Dimensions.height10 * 5 / 2,
-                                                size: Dimensions.height10 * 5,
-                                              ),
-                                              bigText: BigText(text: "Na/Na")),
-                                        );
-                                      } else {
-                                        return GestureDetector(
-                                          onTap: () {
-                                            Get.offNamed(
-                                                RouteHelper.getAddressPage());
-                                          },
-                                          child: AccountWidget(
-                                              appIcon: AppIcon(
-                                                icon: Icons.location_on,
-                                                backgroundColor:
-                                                    AppColors.yellowColor,
-                                                iconColor: Colors.white,
-                                                iconSize:
-                                                    Dimensions.height10 * 5 / 2,
-                                                size: Dimensions.height10 * 5,
-                                              ),
-                                              bigText: BigText(
-                                                  text: "Địa chỉ của bạn")),
-                                        );
-                                      }
-                                    }),
-                                    SizedBox(
-                                      height: Dimensions.height30,
-                                    ),
-                                    //message
-                                    AccountWidget(
-                                        appIcon: AppIcon(
-                                          icon: Icons.message_outlined,
-                                          backgroundColor: Colors.blueAccent,
-                                          iconColor: Colors.white,
-                                          iconSize: Dimensions.height10 * 5 / 2,
-                                          size: Dimensions.height10 * 5,
-                                        ),
-                                        bigText: BigText(text: "Tin nhắn")),
-                                    SizedBox(
-                                      height: Dimensions.height30,
-                                    ),
-                                    //message
-                                    GestureDetector(
-                                      onTap: () {
-                                        if (Get.find<AuthController>()
-                                            .userLoggedIn()) {
-                                          Get.find<AuthController>()
-                                              .clearSharedData();
-                                          Get.find<CartController>().clear();
-                                          Get.find<CartController>()
-                                              .clearCartHistory();
-                                          Get.offNamed(
-                                              RouteHelper.getSignInPage());
-                                        } else {
-                                          print("Ban da dang xuat");
-                                        }
-                                      },
-                                      child: AccountWidget(
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                      left: Dimensions.width15,
+                                      right: Dimensions.width15),
+                                  padding: EdgeInsets.only(
+                                      top: Dimensions.height10,
+                                      bottom: Dimensions.height15),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 1,
+                                            offset: Offset(0, 3),
+                                            color: Colors.grey.withOpacity(0.2))
+                                      ],
+                                      borderRadius: BorderRadius.circular(
+                                          Dimensions.radius15)),
+                                  child: Column(
+                                    children: [
+                                      //name
+                                      AccountWidget(
                                           appIcon: AppIcon(
-                                            icon: Icons.logout,
-                                            backgroundColor: Colors.redAccent,
+                                            icon: Icons.person,
+                                            backgroundColor:
+                                                AppColors.mainColor,
                                             iconColor: Colors.white,
                                             iconSize:
                                                 Dimensions.height10 * 5 / 2,
                                             size: Dimensions.height10 * 5,
                                           ),
-                                          bigText: BigText(text: "Đăng Xuất")),
-                                    )
-                                  ],
+                                          bigText: BigText(
+                                              text: userController
+                                                  .userModel.name)),
+                                      SizedBox(
+                                        height: Dimensions.height20,
+                                      ),
+                                      //phone
+                                      AccountWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.phone,
+                                            backgroundColor:
+                                                AppColors.yellowColor,
+                                            iconColor: Colors.white,
+                                            iconSize:
+                                                Dimensions.height10 * 5 / 2,
+                                            size: Dimensions.height10 * 5,
+                                          ),
+                                          bigText: BigText(
+                                              text: userController
+                                                  .userModel.phone)),
+                                      SizedBox(
+                                        height: Dimensions.height20,
+                                      ),
+                                      //email
+                                      AccountWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.email,
+                                            backgroundColor:
+                                                AppColors.yellowColor,
+                                            iconColor: Colors.white,
+                                            iconSize:
+                                                Dimensions.height10 * 5 / 2,
+                                            size: Dimensions.height10 * 5,
+                                          ),
+                                          bigText: BigText(
+                                              text: userController
+                                                  .userModel.email)),
+                                      SizedBox(
+                                        height: Dimensions.height20,
+                                      ),
+                                      //address
+                                      GetBuilder<LocationController>(
+                                          builder: (locationController) {
+                                        if (userLoggedIn &&
+                                            locationController
+                                                .addressList.isEmpty) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              Get.offNamed(
+                                                  RouteHelper.getAddressPage());
+                                            },
+                                            child: AccountWidget(
+                                                appIcon: AppIcon(
+                                                  icon: Icons.location_on,
+                                                  backgroundColor:
+                                                      AppColors.yellowColor,
+                                                  iconColor: Colors.white,
+                                                  iconSize:
+                                                      Dimensions.height10 *
+                                                          5 /
+                                                          2,
+                                                  size: Dimensions.height10 * 5,
+                                                ),
+                                                bigText:
+                                                    BigText(text: "Na/Na")),
+                                          );
+                                        } else {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              Get.offNamed(
+                                                  RouteHelper.getAddressPage());
+                                            },
+                                            child: AccountWidget(
+                                                appIcon: AppIcon(
+                                                  icon: Icons.location_on,
+                                                  backgroundColor:
+                                                      AppColors.yellowColor,
+                                                  iconColor: Colors.white,
+                                                  iconSize:
+                                                      Dimensions.height10 *
+                                                          5 /
+                                                          2,
+                                                  size: Dimensions.height10 * 5,
+                                                ),
+                                                bigText: BigText(
+                                                    text: "Địa chỉ của bạn")),
+                                          );
+                                        }
+                                      }),
+                                      SizedBox(
+                                        height: Dimensions.height20,
+                                      ),
+                                      //message
+                                      AccountWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.message_outlined,
+                                            backgroundColor: Colors.blueAccent,
+                                            iconColor: Colors.white,
+                                            iconSize:
+                                                Dimensions.height10 * 5 / 2,
+                                            size: Dimensions.height10 * 5,
+                                          ),
+                                          bigText: BigText(text: "Tin nhắn")),
+                                      SizedBox(
+                                        height: Dimensions.height20,
+                                      ),
+                                      //message
+                                      GestureDetector(
+                                        onTap: () {
+                                          if (Get.find<AuthController>()
+                                              .userLoggedIn()) {
+                                            Get.find<AuthController>()
+                                                .clearSharedData();
+                                            Get.find<CartController>().clear();
+                                            Get.find<CartController>()
+                                                .clearCartHistory();
+                                            Get.offNamed(
+                                                RouteHelper.getSignInPage());
+                                          } else {
+                                            print("Ban da dang xuat");
+                                          }
+                                        },
+                                        child: AccountWidget(
+                                            appIcon: AppIcon(
+                                              icon: Icons.logout,
+                                              backgroundColor: Colors.redAccent,
+                                              iconColor: Colors.white,
+                                              iconSize:
+                                                  Dimensions.height10 * 5 / 2,
+                                              size: Dimensions.height10 * 5,
+                                            ),
+                                            bigText:
+                                                BigText(text: "Đăng Xuất")),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             )

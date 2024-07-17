@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/app/app_constants.dart';
 import 'package:food_delivery/app/colors.dart';
 import 'package:food_delivery/app/dimensions.dart';
+import 'package:food_delivery/app/styles.dart';
 import 'package:food_delivery/models/order_model.dart';
 import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/widgets/BigText.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -18,124 +20,216 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
-  late String selectedUrl;
-  double value = 0.0;
-  bool _canRedirect = true;
-  bool _isLoading = true;
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
-  // late WebViewController controllerGlobal;
+  final _formKey = GlobalKey<FormState>();
+  String? selectedBank;
+  String accountNumber = '';
+  String accountName = '';
+  String amount = '';
+  String transferContent = '';
 
-  @override
-  void initState() {
-    super.initState();
-    selectedUrl =
-        '${AppConstants.BASE_URL}/payment-mobile?customer_id=${widget.orderModel.userId}&order_id=${widget.orderModel.id}';
-  }
+  List<String> banks = [
+    'MBBank (MB)',
+    'Vietinbank (CTG)',
+    'BIDV',
+    'Agribank (VBA)',
+    'Vietcombank (VCB)',
+    'VPBank (VPB)',
+    'VIB',
+    'SHB',
+    'Eximbank (EIB)',
+    'TPBank (TPB)',
+    'Cake by VP',
+  ];
+
+  bool _isSuccess = false;
+  bool _isFailed = false;
+  bool _isCancel = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Payment"),
+        title: BigText(
+          text: "Thanh toán",
+          color: Colors.white,
+        ),
+        backgroundColor: AppColors.mainColor,
+        elevation: 0,
+        centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
           onPressed: () {
             Get.toNamed(RouteHelper.getCartPage());
           },
         ),
-        backgroundColor: AppColors.mainColor,
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Center(
-          child: Text(
-              "Tính năng này đang phát triển vui lòng chọn phương thức thanh toán khác",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              )),
-          //   child: Container(
-          //     width: Dimensions.screenWidth,
-          //     child: Stack(
-          //       children: [
-          //         WebView(
-          //           javascriptMode: JavascriptMode.unrestricted,
-          //           initialUrl: selectedUrl,
-          //           gestureNavigationEnabled: true,
-        
-          //           userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E233 Safari/601.1',
-          //           onWebViewCreated: (WebViewController webViewController) {
-          //             _controller.future.then((value) => controllerGlobal = value);
-          //             _controller.complete(webViewController);
-          //             //_controller.future.catchError(onError)
-          //           },
-          //           onProgress: (int progress) {
-          //             print("WebView is loading (progress : $progress%)");
-          //           },
-          //           onPageStarted: (String url) {
-          //             print('Page started loading: $url');
-          //             setState(() {
-          //               _isLoading = true;
-          //             });
-          //             print("printing urls "+url.toString());
-          //             _redirect(url);
-        
-          //           },
-          //           onPageFinished: (String url) {
-          //             print('Page finished loading: $url');
-          //             setState(() {
-          //               _isLoading = false;
-          //             });
-          //             _redirect(url);
-        
-          //           },
-          //         ),
-          //         _isLoading ? Center(
-          //           child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)),
-          //         ) : SizedBox.shrink(),
-          //       ],
-          //     ),
-          //   ),
-          // ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BigText(text: "Nhập thông tin"),
+                SizedBox(height: 20),
+                TextFormField(
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    labelText: 'Ngân hàng',
+                    border: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide:
+                          BorderSide(color: AppColors.mainColor, width: 2.0),
+                    ),
+                    // focusedErrorBorder: OutlineInputBorder(
+                    //   borderRadius: BorderRadius.circular(8.0),
+                    //   borderSide:
+                    //       BorderSide(color: AppColors.mainColor, width: 2.0),
+                    // ),
+                  ),
+                  onTap: () {
+                    showModalBottomSheet(
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(Dimensions.radius20),
+                                  topRight:
+                                      Radius.circular(Dimensions.radius20)),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  top: Dimensions.height10 / 2,
+                                  left: Dimensions.width10 / 2,
+                                  bottom: Dimensions.height10 / 2),
+                              child: ListView.builder(
+                                itemCount: banks.length,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    title: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.radius20 / 4),
+                                            // color: Theme.of(context).cardColor,
+                                            color: Colors.white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey[200]!,
+                                                blurRadius: 5,
+                                                spreadRadius: 1,
+                                              )
+                                            ]),
+                                        child: Container(
+                                            padding: EdgeInsets.only(
+                                                left: Dimensions.width10,
+                                                right: Dimensions.width10,
+                                                top: Dimensions.height10,
+                                                bottom: Dimensions.height10),
+                                            child: Text(
+                                              banks[index],
+                                              style: robotoBold.copyWith(
+                                                  fontSize: Dimensions.font16),
+                                            ))),
+                                    onTap: () {
+                                      setState(() {
+                                        selectedBank = banks[index];
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                  );
+                                },
+                              ),
+                            ));
+                      },
+                    );
+                  },
+                  validator: (value) {
+                    if (selectedBank == null) {
+                      return 'Vui lòng chọn ngân hàng';
+                    }
+                    return null;
+                  },
+                  controller: TextEditingController(text: selectedBank),
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Số tài khoản',
+                    border: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide:
+                          BorderSide(color: AppColors.mainColor, width: 2.0),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      accountNumber = value;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Vui lòng nhập số tài khoản';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Tên tài khoản',
+                    border: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide:
+                          BorderSide(color: AppColors.mainColor, width: 2.0),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      accountName = value;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Vui lòng nhập tên tài khoản';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        // Handle form submission here
+                        Get.offNamed(RouteHelper.getOrderSuccessPage(
+                            widget.orderModel.id.toString(), 'success'));
+                      }
+                    },
+                    child: Text('Tiếp tục',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.mainColor,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
-
-  // void _redirect(String url) {
-  //   // print("redirect");
-  //   if (_canRedirect) {
-  //     bool _isSuccess =
-  //         url.contains('success') && url.contains(AppConstants.BASE_URL);
-  //     bool _isFailed =
-  //         url.contains('fail') && url.contains(AppConstants.BASE_URL);
-  //     bool _isCancel =
-  //         url.contains('cancel') && url.contains(AppConstants.BASE_URL);
-  //     if (_isSuccess || _isFailed || _isCancel) {
-  //       _canRedirect = false;
-  //     }
-  //     if (_isSuccess) {
-  //       Get.offNamed(RouteHelper.getOrderSuccessPage(
-  //           widget.orderModel.id.toString(), 'success'));
-  //     } else if (_isFailed || _isCancel) {
-  //       Get.offNamed(RouteHelper.getOrderSuccessPage(
-  //           widget.orderModel.id.toString(), 'fail'));
-  //     } else {
-  //       print("Encountered problem");
-  //     }
-  //   }
-  // }
-
-  // Future<bool> _exitApp(BuildContext context) async {
-  //   if (await controllerGlobal.canGoBack()) {
-  //     controllerGlobal.goBack();
-  //     return Future.value(false);
-  //   } else {
-  //     print("app exited");
-  //     return true;
-  //     // return Get.dialog(PaymentFailedDialog(orderID: widget.orderModel.id.toString()));
-  //   }
-  // }
 }
