@@ -16,6 +16,6 @@ class AppColors {
   static final Color greenColor = const Color(0xFF89dad0);
   static final Color redColor = const Color.fromRGBO(245, 90, 81, 1);
   static final Color unselectedColor = const Color.fromRGBO(30, 30, 30, 0.5);
-  
+
 }
 
