@@ -38,7 +38,7 @@ class AccountPage extends StatelessWidget {
                             //profile icon
                             AppIcon(
                               icon: Icons.person,
-                              backgroundColor: AppColors.mainColor,
+                              backgroundColor: AppColors.greenColor,
                               iconColor: Colors.white,
                               iconSize:
                                   Dimensions.height45 + Dimensions.height30,
@@ -72,9 +72,8 @@ class AccountPage extends StatelessWidget {
                                       AccountWidget(
                                           appIcon: AppIcon(
                                             icon: Icons.person,
-                                            backgroundColor:
-                                                AppColors.mainColor,
-                                            iconColor: Colors.white,
+                                            backgroundColor: Colors.transparent,
+                                            iconColor: Colors.black,
                                             iconSize:
                                                 Dimensions.height10 * 5 / 2,
                                             size: Dimensions.height10 * 5,
@@ -89,9 +88,8 @@ class AccountPage extends StatelessWidget {
                                       AccountWidget(
                                           appIcon: AppIcon(
                                             icon: Icons.phone,
-                                            backgroundColor:
-                                                AppColors.yellowColor,
-                                            iconColor: Colors.white,
+                                            backgroundColor: Colors.transparent,
+                                            iconColor: Colors.black,
                                             iconSize:
                                                 Dimensions.height10 * 5 / 2,
                                             size: Dimensions.height10 * 5,
@@ -106,9 +104,8 @@ class AccountPage extends StatelessWidget {
                                       AccountWidget(
                                           appIcon: AppIcon(
                                             icon: Icons.email,
-                                            backgroundColor:
-                                                AppColors.yellowColor,
-                                            iconColor: Colors.white,
+                                            backgroundColor: Colors.transparent,
+                                            iconColor: Colors.black,
                                             iconSize:
                                                 Dimensions.height10 * 5 / 2,
                                             size: Dimensions.height10 * 5,
@@ -134,8 +131,8 @@ class AccountPage extends StatelessWidget {
                                                 appIcon: AppIcon(
                                                   icon: Icons.location_on,
                                                   backgroundColor:
-                                                      AppColors.yellowColor,
-                                                  iconColor: Colors.white,
+                                                      Colors.transparent,
+                                                  iconColor: Colors.black,
                                                   iconSize:
                                                       Dimensions.height10 *
                                                           5 /
@@ -155,8 +152,8 @@ class AccountPage extends StatelessWidget {
                                                 appIcon: AppIcon(
                                                   icon: Icons.location_on,
                                                   backgroundColor:
-                                                      AppColors.yellowColor,
-                                                  iconColor: Colors.white,
+                                                      Colors.transparent,
+                                                  iconColor: Colors.black,
                                                   iconSize:
                                                       Dimensions.height10 *
                                                           5 /
@@ -175,8 +172,8 @@ class AccountPage extends StatelessWidget {
                                       AccountWidget(
                                           appIcon: AppIcon(
                                             icon: Icons.message_outlined,
-                                            backgroundColor: Colors.blueAccent,
-                                            iconColor: Colors.white,
+                                            backgroundColor: Colors.transparent,
+                                            iconColor: Colors.black,
                                             iconSize:
                                                 Dimensions.height10 * 5 / 2,
                                             size: Dimensions.height10 * 5,
@@ -204,8 +201,9 @@ class AccountPage extends StatelessWidget {
                                         child: AccountWidget(
                                             appIcon: AppIcon(
                                               icon: Icons.logout,
-                                              backgroundColor: Colors.redAccent,
-                                              iconColor: Colors.white,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              iconColor: Colors.black,
                                               iconSize:
                                                   Dimensions.height10 * 5 / 2,
                                               size: Dimensions.height10 * 5,

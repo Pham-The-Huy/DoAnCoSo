@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/app/colors.dart';
 import 'package:food_delivery/app/dimensions.dart';
 import 'package:food_delivery/controllers/order_controller.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,8 @@ class DeliveryOption extends StatelessWidget {
             groupValue: orderController.orderType,
             onChanged: (String? value) =>
                 orderController.setDeliveryType(value!),
-            activeColor: Theme.of(context).primaryColor,
+            // activeColor: Theme.of(context).primaryColor,
+            activeColor: AppColors.greenColor,
           ),
           SizedBox(
             width: Dimensions.width10 / 2,

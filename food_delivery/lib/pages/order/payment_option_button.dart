@@ -40,7 +40,7 @@ class PaymentOptionButton extends StatelessWidget {
               icon,
               size: 40,
               color: _selected
-                  ? AppColors.mainColor
+                  ? AppColors.greenColor
                   : Theme.of(context).disabledColor,
             ),
             title: Text(
@@ -64,7 +64,7 @@ class PaymentOptionButton extends StatelessWidget {
             trailing: _selected
                 ? Icon(
                     Icons.check_circle,
-                    color: Theme.of(context).primaryColor,
+                    color: AppColors.greenColor,
                     // color: Colors.green,
                   )
                 : null,

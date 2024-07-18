@@ -88,7 +88,7 @@ class PopularFoodDetail extends StatelessWidget {
                                     icon: Icons.circle,
                                     size: 20,
                                     iconColor: Colors.transparent,
-                                    backgroundColor: AppColors.mainColor,
+                                    backgroundColor: AppColors.redColor,
                                   ),
                                 )
                               : Container(),
@@ -221,7 +221,7 @@ class PopularFoodDetail extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: AppColors.mainColor,
+                      color: AppColors.redColor,
                     ),
                   ),
                 )

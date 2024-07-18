@@ -226,7 +226,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   left: Dimensions.width20,
                   right: Dimensions.width20),
               decoration: BoxDecoration(
-                color: AppColors.buttonBackgroundColor,
+                color: AppColors.mainColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(Dimensions.radius20 * 2),
                   topRight: Radius.circular(Dimensions.radius20 * 2),
@@ -274,7 +274,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(Dimensions.radius20),
-                        color: AppColors.mainColor,
+                        color: AppColors.redColor,
                       ),
                     ),
                   ),
