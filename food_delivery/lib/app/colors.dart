@@ -1,16 +1,20 @@
 import 'dart:ui';
 
 class AppColors{
-  static final Color textColor = const Color(0xFF5A3211); // Dark Brown for text
-  static final Color mainColor = const Color(0xFFD68631); // Vibrant Orange for main color
-  static final Color iconColor1 = const Color(0xFF964405); // Rich Orange for icons
-  static final Color iconColor2 = const Color(0xFF3D717E); // Muted Blue for secondary icons
-  static final Color paraColor = const Color(0xFF10475E); // Dark Teal for paragraph text
-  static final Color buttonBackgroundColor = const Color(0xFF0B2839); // Very Dark Blue for button background
-  static final Color signColor = const Color(0xFFD68631); // Vibrant Orange for sign text
-  static final Color titleColor = const Color(0xFF5A3211); // Dark Brown for titles
-  static final Color mainBlackColor = const Color(0xFF0B2839); // Very Dark Blue for main black color
-  static final Color yellowColor = const Color(0xFF964405); // Rich Orange for highlights
+  static final Color textColor = const Color(0xFFccc7c5);
+  static final Color mainColor = Color.fromARGB(255, 255, 109, 73);
+  static final Color iconColor1 = const Color(0xFFffd28d);
+  static final Color iconColor2 = const Color(0xFFfcab88);
+  static final Color paraColor = const Color(0xFF8f837f);
+  static final Color buttonBackgroundColor = const Color(0xFFf7f6f4);
+  static final Color signColor = const Color(0xFFa9a29f);
+  static final Color titleColor = const Color(0xFF5c524f);
+  static final Color mainBlackColor = const Color(0xFF332d2b);
+  static final Color blackColor = Color.fromARGB(255, 0, 0, 0);
+  static final Color yellowColor = const Color(0xFFffd379);
+  static final Color greenColor = const Color(0xFF89dad0);
+  static final Color redColor = const Color.fromRGBO(245, 90, 81, 1);
+  static final Color unselectedColor = const Color.fromRGBO(30, 30, 30, 0.5);
 
 
 }

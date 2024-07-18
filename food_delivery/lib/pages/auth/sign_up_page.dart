@@ -40,7 +40,7 @@ class SignUpPage extends StatelessWidget {
         showCustomSnackBar("Nhập mật khẩu của bạn", title: "Mật khẩu");
       } else if (password.length < 6) {
         showCustomSnackBar("Lưu ý mật khẩu phải có nhiều hơn 6 kí tự",
-            title: "Password");
+            title: "Mật khẩu");
       } else {
         // showCustomSnackBar("Mọi thứ đã xong", title: "Tuyệt vời!");
         SignUpBody signUpBody = SignUpBody(
