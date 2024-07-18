@@ -26,10 +26,10 @@ class CommonTextButton extends StatelessWidget {
           BoxShadow(
               offset: Offset(0, 5),
               blurRadius: 10,
-              color: AppColors.mainColor.withOpacity(0.3))
+              color: AppColors.redColor.withOpacity(0.5))
         ],
         borderRadius: BorderRadius.circular(Dimensions.radius20),
-        color: AppColors.mainColor,
+        color: AppColors.redColor,
       ),
     );
   }

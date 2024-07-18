@@ -28,7 +28,7 @@ class OrderSuccessPage extends StatelessWidget {
                     ? Icons.check_circle_outline
                     : Icons.warning_amber_outlined,
                 size: 100,
-                color: AppColors.mainColor,
+                color: AppColors.greenColor,
               ),
               SizedBox(
                 height: Dimensions.height30,

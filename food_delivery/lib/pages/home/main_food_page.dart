@@ -23,61 +23,62 @@ class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: _loadResource,
-      child: Column(
-      children: [
-        //show the header
-        Container(
-          child: Container(
-            margin: EdgeInsets.only(
-                top: Dimensions.height45, bottom: Dimensions.height15),
-            padding: EdgeInsets.only(
-                left: Dimensions.width20, right: Dimensions.width20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
+        onRefresh: _loadResource,
+        child: Column(
+          children: [
+            //show the header
+            Container(
+              child: Container(
+                margin: EdgeInsets.only(
+                    top: Dimensions.height45, bottom: Dimensions.height15),
+                padding: EdgeInsets.only(
+                    left: Dimensions.width20, right: Dimensions.width20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    BigText(
-                      text: 'VietNam',
-                      color: AppColors.mainColor,
-                    ),
-                    Row(
+                    Column(
                       children: [
-                        SmallText(
-                          text: "HaNoi",
-                          color: Colors.black54,
+                        BigText(
+                          text: 'VietNam',
+                          color: AppColors.mainBlackColor,
                         ),
-                        Icon(Icons.arrow_drop_down_rounded)
+                        Row(
+                          children: [
+                            SmallText(
+                              text: "HaNoi",
+                              color: Colors.black54,
+                            ),
+                            const Icon(Icons.arrow_drop_down_rounded)
+                          ],
+                        )
                       ],
+                    ),
+                    Center(
+                      child: Container(
+                        width: Dimensions.height45,
+                        height: Dimensions.height45,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius15),
+                          color: AppColors.mainBlackColor,
+                        ),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.white,
+                          size: Dimensions.iconSize24,
+                        ),
+                      ),
                     )
                   ],
                 ),
-                Center(
-                  child: Container(
-                    width: Dimensions.height45,
-                    height: Dimensions.height45,
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.white,
-                      size: Dimensions.iconSize24,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius15),
-                      color: AppColors.mainColor,
-                    ),
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
-        ),
-        //show the body
-        Expanded(
-            child: SingleChildScrollView(
-          child: FoodPageBody(),
-        ))
-      ],
-    ));
+            //show the body
+            const Expanded(
+                child: SingleChildScrollView(
+              child: FoodPageBody(),
+            ))
+          ],
+        ));
   }
 }

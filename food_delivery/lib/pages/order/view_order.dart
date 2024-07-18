@@ -61,7 +61,7 @@ class ViewOrder extends StatelessWidget {
                                   children: [
                                     Container(
                                         decoration: BoxDecoration(
-                                          color: AppColors.mainColor,
+                                          color: AppColors.greenColor,
                                           borderRadius: BorderRadius.circular(
                                               Dimensions.radius20 / 4),
                                         ),
@@ -91,16 +91,14 @@ class ViewOrder extends StatelessWidget {
                                                       Dimensions.radius20 / 4),
                                               border: Border.all(
                                                   width: 1,
-                                                  color: Theme.of(context)
-                                                      .primaryColor)),
+                                                  color: AppColors.paraColor)),
                                           child: Row(
                                             children: [
                                               Image.asset(
                                                 "assets/images/tracking.png",
                                                 height: 15,
                                                 width: 15,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
+                                                color: AppColors.mainBlackColor,
                                               ),
                                               SizedBox(
                                                 width: Dimensions.width10 / 2,
@@ -109,8 +107,8 @@ class ViewOrder extends StatelessWidget {
                                                 "Theo dõi đơn hàng",
                                                 style: robotoMedium.copyWith(
                                                   fontSize: Dimensions.font12,
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
+                                                  color:
+                                                      AppColors.mainBlackColor,
                                                 ),
                                               ),
                                             ],

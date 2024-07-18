@@ -153,7 +153,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     child: AppIcon(
                         iconSize: Dimensions.iconSize24,
                         iconColor: Colors.white,
-                        backgroundColor: AppColors.mainColor,
+                        backgroundColor: AppColors.redColor,
                         icon: Icons.remove),
                   ),
                   BigText(
@@ -201,7 +201,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                           color: Colors.white),
                       child: Icon(
                         Icons.favorite,
-                        color: AppColors.mainColor,
+                        color: AppColors.redColor,
                       )),
                   GestureDetector(
                       onTap: () {
@@ -220,7 +220,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius20),
-                          color: AppColors.mainColor,
+                          color: AppColors.redColor,
                         ),
                       ))
                 ],

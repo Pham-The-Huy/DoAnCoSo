@@ -24,9 +24,9 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainFoodPage(),
-    OrderPage(),
-    CartHistory(),
-    AccountPage(),
+    const OrderPage(),
+    const CartHistory(),
+    const AccountPage(),
   ];
 
   void onTapNav(int index) {
@@ -111,20 +111,27 @@ class _HomePageState extends State<HomePage> {
       //         ],
       //       )
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimensions.radius30),
-                topRight: Radius.circular(Dimensions.radius30)),
-            color: AppColors.mainBlackColor),
+        decoration: const BoxDecoration(
+            // borderRadius: BorderRadius.only(
+            //     topLeft: Radius.circular(Dimensions.radius30),
+            //     topRight: Radius.circular(Dimensions.radius30)),
+            color: Colors.white),
         child: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: Dimensions.width15, vertical: Dimensions.height10),
           child: GNav(
             selectedIndex: _selectedIndex,
-            backgroundColor: AppColors.mainBlackColor,
-            color: Colors.white,
-            activeColor: Colors.black,
-            tabBackgroundColor: Colors.white,
+            backgroundColor: Colors.white,
+            color: AppColors.unselectedColor,
+            activeColor: Colors.white,
+            tabBackgroundColor: const Color.fromRGBO(245, 90, 81, 1),
+            // tabShadow: [
+            //   BoxShadow(
+            //     color: Color.fromRGBO(245, 90, 81, 1),
+            //     blurRadius: 8.0,
+            //     offset: Offset(0, 1),
+            //   )
+            // ],
             gap: 5,
             tabs: [
               GButton(
