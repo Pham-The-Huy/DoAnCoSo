@@ -66,7 +66,7 @@ class CartHistory extends StatelessWidget {
         children: [
           Container(
             height: Dimensions.height10 * 10,
-            // color: AppColors.mainColor,
+            color: AppColors.mainColor,
             width: double.maxFinite,
             padding: EdgeInsets.only(
                 top: Dimensions.height45,

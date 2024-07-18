@@ -48,7 +48,7 @@ class CartPage extends StatelessWidget {
                         child: AppIcon(
                           icon: Icons.arrow_back_ios,
                           iconColor: Colors.white,
-                          backgroundColor: AppColors.mainColor,
+                          backgroundColor: AppColors.blackColor,
                           iconSize: Dimensions.iconSize24,
                         ),
                       ),
@@ -62,14 +62,14 @@ class CartPage extends StatelessWidget {
                         child: AppIcon(
                           icon: Icons.home_outlined,
                           iconColor: Colors.white,
-                          backgroundColor: AppColors.mainColor,
+                          backgroundColor: AppColors.blackColor,
                           iconSize: Dimensions.iconSize24,
                         ),
                       ),
                       AppIcon(
                         icon: Icons.shopping_cart,
                         iconColor: Colors.white,
-                        backgroundColor: AppColors.mainColor,
+                        backgroundColor: AppColors.blackColor,
                         iconSize: Dimensions.iconSize24,
                       )
                     ])),
