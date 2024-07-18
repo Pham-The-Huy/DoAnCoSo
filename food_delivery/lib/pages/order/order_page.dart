@@ -38,11 +38,11 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
           Container(
             width: Dimensions.screenWidth,
             child: TabBar(
-              indicatorColor: Theme.of(context).primaryColor,
+              indicatorColor: AppColors.redColor,
               indicatorWeight: 3,
-              labelColor: Theme.of(context).primaryColor,
+              labelColor: AppColors.blackColor,
               // unselectedLabelColor: Theme.of(context).disabledColor,
-              unselectedLabelColor: AppColors.yellowColor,
+              unselectedLabelColor: AppColors.unselectedColor,
               controller: _tabController,
               tabs: [
                 Tab(

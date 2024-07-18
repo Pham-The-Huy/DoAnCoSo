@@ -28,7 +28,7 @@ class AppColumn extends StatelessWidget {
                   5,
                   (index) => Icon(
                         Icons.star,
-                        color: AppColors.mainColor,
+                        color: AppColors.yellowColor,
                         size: 15,
                       )),
             ),
