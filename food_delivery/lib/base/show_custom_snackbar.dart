@@ -3,7 +3,7 @@ import 'package:food_delivery/widgets/BigText.dart';
 import 'package:get/get.dart';
 
 void showCustomSnackBar(String message,
-    {bool isError = true, String title = 'Error'}) {
+    {bool isError = true, String title = 'Lỗi'}) {
   Get.snackbar(title, message,
       titleText: BigText(
         text: title,

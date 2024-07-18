@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+
 class AppColors {
   static final Color textColor = const Color(0xFFccc7c5);
   static final Color mainColor = Color.fromRGBO(255, 245, 243, 1);
@@ -15,4 +16,6 @@ class AppColors {
   static final Color greenColor = const Color(0xFF89dad0);
   static final Color redColor = const Color.fromRGBO(245, 90, 81, 1);
   static final Color unselectedColor = const Color.fromRGBO(30, 30, 30, 0.5);
+  
 }
+
