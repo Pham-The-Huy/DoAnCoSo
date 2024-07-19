@@ -66,7 +66,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                                   icon: Icons.circle,
                                   size: 20,
                                   iconColor: Colors.transparent,
-                                  backgroundColor: AppColors.mainColor,
+                                  backgroundColor: AppColors.redColor,
                                 ),
                               )
                             : Container(),
@@ -213,14 +213,20 @@ class RecommendedFoodDetail extends StatelessWidget {
                             bottom: Dimensions.height10,
                             left: Dimensions.width20,
                             right: Dimensions.width20),
-                        child: BigText(
-                          text: "${product.price!}đ | Thêm",
-                          color: Colors.black,
-                        ),
                         decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius20),
-                          color: AppColors.redColor,
+                          color: AppColors.whiteColor,
+                          boxShadow: [
+                            BoxShadow(
+                                offset: Offset(0, 5),
+                                blurRadius: 10,
+                                color: AppColors.whiteColor.withOpacity(0.5))
+                          ],
+                        ),
+                        child: BigText(
+                          text: "${product.price!}đ | Thêm",
+                          color: Colors.black,
                         ),
                       ))
                 ],

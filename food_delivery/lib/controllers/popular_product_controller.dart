@@ -54,8 +54,8 @@ class PopularProductController extends GetxController {
   int checkQuantity(int quantity) {
     if ((_inCartItems + quantity) < 0) {
       Get.snackbar(
-        "Item count",
-        "You can't reduce more !",
+        "Số lượng mặt hàng",
+        "Bạn không thể giảm số lượng mặt hàng!",
         backgroundColor: AppColors.redColor,
         colorText: Colors.white,
       );
@@ -66,8 +66,8 @@ class PopularProductController extends GetxController {
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar(
-        "Item count",
-        "You can't add more !",
+        "Số lượng mặt hàng",
+        "Bạn không thể thêm số lượng mặt hàng!",
         backgroundColor: AppColors.redColor,
         colorText: Colors.white,
       );

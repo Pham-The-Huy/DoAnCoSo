@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: BigText(
         text: title,
-        color: AppColors.blackColor,
+        color: AppColors.whiteColor,
       ),
       backgroundColor: AppColors.mainColor,
       elevation: 0,
@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ? onBackPressed!()
                   : Navigator.pushReplacementNamed(context, "/initial"),
               icon: Icon(Icons.arrow_back_ios),
-              color: AppColors.blackColor,
+              color: AppColors.whiteColor,
             )
           : SizedBox(),
     );

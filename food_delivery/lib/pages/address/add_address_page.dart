@@ -266,15 +266,15 @@ class _AddAddressPageState extends State<AddAddressPage> {
                           bottom: Dimensions.height10,
                           left: Dimensions.width20,
                           right: Dimensions.width20),
-                      child: BigText(
-                        text: "Lưu Địa Chỉ",
-                        color: Colors.white,
-                        size: 26,
-                      ),
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(Dimensions.radius20),
-                        color: AppColors.redColor,
+                        color: AppColors.whiteColor,
+                      ),
+                      child: BigText(
+                        text: "Lưu Địa Chỉ",
+                        color: AppColors.blackColor,
+                        size: Dimensions.font26 - 3,
                       ),
                     ),
                   ),

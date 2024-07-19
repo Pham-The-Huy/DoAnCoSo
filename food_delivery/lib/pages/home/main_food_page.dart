@@ -60,7 +60,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius15),
-                          color: AppColors.mainBlackColor,
+                          color: AppColors.blackColor,
                         ),
                         child: Icon(
                           Icons.search,

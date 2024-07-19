@@ -75,7 +75,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 : popularProducts.popularProductList.length,
             position: _currPageValue,
             decorator: DotsDecorator(
-              activeColor: AppColors.redColor,
+              activeColor: AppColors.mainColor,
               size: const Size.square(9.0),
               activeSize: const Size(18.0, 9.0),
               activeShape: RoundedRectangleBorder(

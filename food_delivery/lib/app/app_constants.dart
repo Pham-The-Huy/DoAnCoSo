@@ -2,8 +2,8 @@ class AppConstants {
   static const String APP_NAME = "DBFood";
   static const int APP_VERSION = 1;
 
-  static const String BASE_URL = "http://localhost:8000";
-  //static const String BASE_URL = "http://10.0.2.2:8000";
+  // static const String BASE_URL = "http://localhost:8000";
+  static const String BASE_URL = "http://10.0.2.2:8000";
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   // static const String DRINKS_URI = "/api/v1/products/drinks";
@@ -23,8 +23,8 @@ class AppConstants {
   static const String ZONE_URI = '/api/v1/config/get-zone-id';
 
   //oders
-  static const PLACE_ORDER_URI='/api/v1/customer/order/place';
-  static const ORDER_LIST_URI='/api/v1/customer/order/list';  
+  static const PLACE_ORDER_URI = '/api/v1/customer/order/place';
+  static const ORDER_LIST_URI = '/api/v1/customer/order/list';
 
   static const String TOKEN = "";
   static const String PHONE = "";

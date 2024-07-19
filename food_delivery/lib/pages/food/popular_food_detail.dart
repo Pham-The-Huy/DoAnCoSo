@@ -183,7 +183,7 @@ class PopularFoodDetail extends StatelessWidget {
                         },
                         child: Icon(
                           Icons.remove,
-                          color: AppColors.signColor,
+                          color: AppColors.blackColor,
                         ),
                       ),
                       SizedBox(
@@ -199,7 +199,7 @@ class PopularFoodDetail extends StatelessWidget {
                         },
                         child: Icon(
                           Icons.add,
-                          color: AppColors.signColor,
+                          color: AppColors.blackColor,
                         ),
                       ),
                     ],
@@ -215,13 +215,19 @@ class PopularFoodDetail extends StatelessWidget {
                         bottom: Dimensions.height10,
                         left: Dimensions.width20,
                         right: Dimensions.width20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      color: AppColors.whiteColor,
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(0, 5),
+                            blurRadius: 10,
+                            color: AppColors.whiteColor.withOpacity(0.5))
+                      ],
+                    ),
                     child: BigText(
                       text: "${product.price!}đ | Thêm",
                       color: Colors.black,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: AppColors.redColor,
                     ),
                   ),
                 )

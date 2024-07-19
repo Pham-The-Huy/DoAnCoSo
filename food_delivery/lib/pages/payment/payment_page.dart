@@ -52,7 +52,7 @@ class _PaymentPageState extends State<PaymentPage> {
       appBar: AppBar(
         title: BigText(
           text: "Thanh toán",
-          color: AppColors.blackColor,
+          color: AppColors.whiteColor,
         ),
         backgroundColor: AppColors.mainColor,
         elevation: 0,
@@ -60,7 +60,7 @@ class _PaymentPageState extends State<PaymentPage> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: AppColors.blackColor,
+            color: AppColors.whiteColor,
           ),
           onPressed: () {
             Get.toNamed(RouteHelper.getCartPage());
@@ -219,7 +219,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     child: Text('Tiếp tục',
                         style: TextStyle(color: Colors.white, fontSize: 20)),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.redColor,
+                      backgroundColor: AppColors.mainColor,
                       padding:
                           EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     ),

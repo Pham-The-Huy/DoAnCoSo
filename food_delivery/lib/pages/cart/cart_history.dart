@@ -77,7 +77,7 @@ class CartHistory extends StatelessWidget {
               children: [
                 BigText(
                   text: "Lịch sử mua hàng",
-                  color: AppColors.blackColor,
+                  color: AppColors.whiteColor,
                   size: 24,
                 ),
                 AppIcon(
