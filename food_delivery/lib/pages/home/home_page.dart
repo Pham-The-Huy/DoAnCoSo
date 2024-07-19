@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.white,
             color: AppColors.unselectedColor,
             activeColor: Colors.white,
-            tabBackgroundColor: const Color.fromRGBO(245, 90, 81, 1),
+            tabBackgroundColor: const Color.fromRGBO(33, 135, 139, 1),
             // tabShadow: [
             //   BoxShadow(
             //     color: Color.fromRGBO(245, 90, 81, 1),

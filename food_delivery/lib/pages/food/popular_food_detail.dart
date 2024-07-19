@@ -217,7 +217,7 @@ class PopularFoodDetail extends StatelessWidget {
                         right: Dimensions.width20),
                     child: BigText(
                       text: "${product.price!}đ | Thêm",
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
