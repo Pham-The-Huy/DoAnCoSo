@@ -221,8 +221,7 @@ class CartPage extends StatelessWidget {
                                                                     child: Icon(
                                                                       Icons
                                                                           .remove,
-                                                                      color: AppColors
-                                                                          .signColor,
+                                                                      color: AppColors.blackColor,
                                                                     ),
                                                                   ),
                                                                   SizedBox(
@@ -252,8 +251,7 @@ class CartPage extends StatelessWidget {
                                                                     },
                                                                     child: Icon(
                                                                       Icons.add,
-                                                                      color: AppColors
-                                                                          .signColor,
+                                                                      color: AppColors.blackColor,
                                                                     ),
                                                                   ),
                                                                 ],

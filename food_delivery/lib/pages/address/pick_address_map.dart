@@ -58,7 +58,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
         ),
       ),
       body: OpenStreetMapSearchAndPick(
-        buttonColor: Colors.blue,
+        buttonColor: AppColors.mainColor,
         buttonText: 'Cập nhật địa chỉ',
         onPicked: (pickedData) async {
           final locationController = Get.find<LocationController>();
