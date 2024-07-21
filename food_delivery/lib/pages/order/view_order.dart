@@ -19,7 +19,7 @@ class ViewOrder extends StatelessWidget {
       body: GetBuilder<OrderController>(
         builder: (orderController) {
           if (orderController.isLoading == false) {
-            late List<OrderModel> orderList;
+            List<OrderModel> orderList = [];
             if (orderController.currentOrderList.isNotEmpty) {
               orderList = isCurrent
                   ? orderController.currentOrderList.reversed.toList()
