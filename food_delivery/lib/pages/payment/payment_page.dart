@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:food_delivery/app/app_constants.dart';
 import 'package:food_delivery/app/colors.dart';
@@ -26,24 +25,33 @@ class _PaymentPageState extends State<PaymentPage> {
   String accountName = '';
   String amount = '';
   String transferContent = '';
+  String searchQuery = '';
+  final TextEditingController _bankController = TextEditingController();
 
-  List<String> banks = [
-    'MBBank (MB)',
-    'Vietinbank (CTG)',
-    'BIDV',
-    'Agribank (VBA)',
-    'Vietcombank (VCB)',
-    'VPBank (VPB)',
-    'VIB',
-    'SHB',
-    'Eximbank (EIB)',
-    'TPBank (TPB)',
-    'Cake by VP',
+  List<Map<String, String>> banks = [
+    {'name': 'MBBank (MB)', 'fullName': 'Ngân hàng Quân đội', 'logo': 'assets/images/Icon-MB-Bank-MBB.webp'},
+    {'name': 'Vietinbank (CTG)', 'fullName': 'Ngân hàng Công Thương Việt Nam', 'logo': 'assets/images/vietiin.webp'},
+    {'name': 'BIDV', 'fullName': 'Ngân hàng Đầu tư và Phát triển Việt Nam', 'logo': 'assets/images/bidv.webp'},
+    {'name': 'Agribank (VBA)', 'fullName': 'Ngân hàng Nông nghiệp và Phát triển nông thôn Việt Nam', 'logo': 'assets/images/agribank.webp'},
+    {'name': 'Vietcombank (VCB)', 'fullName': 'Ngân hàng Ngoại thương Việt Nam', 'logo': 'assets/images/Icon-Vietcombank.png'},
+    {'name': 'VPBank (VPB)', 'fullName': 'Ngân hàng Việt Nam Thịnh Vượng', 'logo': 'assets/images/Icon-VPBank.png'},
+    {'name': 'VIB', 'fullName': 'Ngân hàng Quốc tế Việt Nam', 'logo': 'assets/images/vib.png'},
+    {'name': 'SHB', 'fullName': 'Ngân hàng Sài Gòn - Hà Nội', 'logo': 'assets/images/Icon-SHB.webp'},
+    {'name': 'Eximbank (EIB)', 'fullName': 'Ngân hàng Xuất Nhập Khẩu Việt Nam', 'logo': 'assets/images/exim.webp'},
+    {'name': 'TPBank (TPB)', 'fullName': 'Ngân hàng Tiên Phong', 'logo': 'assets/images/Icon-TPBank.webp'},
+    {'name': 'Cake by VP', 'fullName': 'Ngân hàng số Cake by VPBank', 'logo': 'assets/images/cake.webp'},
   ];
 
-  bool _isSuccess = false;
-  bool _isFailed = false;
-  bool _isCancel = false;
+  void _handleSubmit() {
+    if (_formKey.currentState!.validate()) {
+      print("Form is valid");
+      print("Selected Bank: $selectedBank");
+      print("Account Number: $accountNumber");
+      print("Account Name: $accountName");
+    } else {
+      print("Form is not valid");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,77 +86,135 @@ class _PaymentPageState extends State<PaymentPage> {
                 BigText(text: "Nhập thông tin"),
                 SizedBox(height: 20),
                 TextFormField(
+                  controller: _bankController,
                   readOnly: true,
                   decoration: InputDecoration(
                     labelText: 'Ngân hàng',
                     border: OutlineInputBorder(),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide:
-                          BorderSide(color: AppColors.mainColor, width: 2.0),
+                      borderSide: BorderSide(color: AppColors.mainColor, width: 2.0),
                     ),
-                    // focusedErrorBorder: OutlineInputBorder(
-                    //   borderRadius: BorderRadius.circular(8.0),
-                    //   borderSide:
-                    //       BorderSide(color: AppColors.mainColor, width: 2.0),
-                    // ),
                   ),
                   onTap: () {
                     showModalBottomSheet(
                       backgroundColor: Colors.transparent,
                       context: context,
                       builder: (context) {
-                        return Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
+                        return StatefulBuilder(
+                          builder: (BuildContext context, StateSetter setState) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(Dimensions.radius20),
-                                  topRight:
-                                      Radius.circular(Dimensions.radius20)),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  top: Dimensions.height10 / 2,
-                                  left: Dimensions.width10 / 2,
-                                  bottom: Dimensions.height10 / 2),
-                              child: ListView.builder(
-                                itemCount: banks.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    title: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                                Dimensions.radius20 / 4),
-                                            // color: Theme.of(context).cardColor,
-                                            color: Colors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey[200]!,
-                                                blurRadius: 5,
-                                                spreadRadius: 1,
-                                              )
-                                            ]),
-                                        child: Container(
-                                            padding: EdgeInsets.only(
-                                                left: Dimensions.width10,
-                                                right: Dimensions.width10,
-                                                top: Dimensions.height10,
-                                                bottom: Dimensions.height10),
-                                            child: Text(
-                                              banks[index],
-                                              style: robotoBold.copyWith(
-                                                  fontSize: Dimensions.font16),
-                                            ))),
-                                    onTap: () {
-                                      setState(() {
-                                        selectedBank = banks[index];
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  );
-                                },
+                                  topRight: Radius.circular(Dimensions.radius20),
+                                ),
                               ),
-                            ));
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: Dimensions.height10,
+                                      horizontal: Dimensions.width20,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        BigText(text: "Chọn ngân hàng"),
+                                        SizedBox(height: 10),
+                                        TextField(
+                                          decoration: InputDecoration(
+                                            prefixIcon: Icon(Icons.search),
+                                            hintText: 'Tìm theo tên ngân hàng',
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(8.0),
+                                              borderSide: BorderSide(color: AppColors.mainColor, width: 2.0),
+                                            ),
+                                          ),
+                                          onChanged: (value) {
+                                            setState(() {
+                                              searchQuery = value;
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: ListView.builder(
+                                      itemCount: banks.length,
+                                      itemBuilder: (context, index) {
+                                        if (searchQuery.isNotEmpty && !banks[index]['name']!.toLowerCase().contains(searchQuery.toLowerCase())) {
+                                          return Container();
+                                        }
+                                        return ListTile(
+                                          onTap: () {
+                                            setState(() {
+                                              selectedBank = banks[index]['name'];
+                                              _bankController.text = banks[index]['name']!;
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                          title: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(Dimensions.radius20 / 4),
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey[200]!,
+                                                  blurRadius: 5,
+                                                  spreadRadius: 1,
+                                                ),
+                                              ],
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                vertical: Dimensions.height10,
+                                                horizontal: Dimensions.width10,
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Image.asset(
+                                                        banks[index]['logo']!,
+                                                        width: 40,
+                                                        height: 40,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                      SizedBox(width: Dimensions.width10),
+                                                      Expanded(
+                                                        child: Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            Text(
+                                                              banks[index]['name']!,
+                                                              style: robotoBold.copyWith(fontSize: Dimensions.font16),
+                                                            ),
+                                                            Text(
+                                                              banks[index]['fullName']!,
+                                                              style: robotoRegular.copyWith(fontSize: Dimensions.font12, color: Colors.grey),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
                       },
                     );
                   },
@@ -158,7 +224,6 @@ class _PaymentPageState extends State<PaymentPage> {
                     }
                     return null;
                   },
-                  controller: TextEditingController(text: selectedBank),
                 ),
                 SizedBox(height: 20),
                 TextFormField(
@@ -167,8 +232,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     border: OutlineInputBorder(),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide:
-                          BorderSide(color: AppColors.mainColor, width: 2.0),
+                      borderSide: BorderSide(color: AppColors.mainColor, width: 2.0),
                     ),
                   ),
                   onChanged: (value) {
@@ -190,8 +254,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     border: OutlineInputBorder(),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide:
-                          BorderSide(color: AppColors.mainColor, width: 2.0),
+                      borderSide: BorderSide(color: AppColors.mainColor, width: 2.0),
                     ),
                   ),
                   onChanged: (value) {
@@ -206,7 +269,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 40),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
@@ -216,12 +279,12 @@ class _PaymentPageState extends State<PaymentPage> {
                             widget.orderModel.id.toString(), 'success'));
                       }
                     },
-                    child: Text('Tiếp tục',
+                    child: Text('Thanh Toán',
                         style: TextStyle(color: Colors.white, fontSize: 20)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.mainColor,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     ),
                   ),
                 ),
